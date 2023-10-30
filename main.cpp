@@ -20,5 +20,6 @@ int main()
 
     userManager.registerUser();
     userManager.registerUser();
+    cout << userManager.loginUser();
     return 0;
 }

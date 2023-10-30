@@ -17,6 +17,7 @@ class UserManager
 
 public:
     void registerUser();
+    int loginUser();
 
 
 };
