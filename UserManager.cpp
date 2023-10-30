@@ -15,19 +15,24 @@ User UserManager::insertNewUser()
     User user;
     system("cls");
 
+    if (users.empty())
+    {
+        user.setId(1);
+    }
+
     cout << "REJESTRACJA NOWEGO UZYTKOWNIKA:" << endl;
 
     cout << "Wprowadz login" << endl;
-    user.setLogin("adam");
+    user.setLogin(InputMethods::readLine());
 
     cout << "Wprowadz haslo" << endl;
-    user.setLogin("adam");
+    user.setLogin(InputMethods::readLine());
 
     cout << "Wprowadz imie" << endl;
-    user.setLogin("adam");
+    user.setLogin(InputMethods::readLine());
 
     cout << "Wprowadz nazwisko" << endl;
-    user.setLogin("adam");
+    user.setLogin(InputMethods::readLine());
 
     return user;
 
