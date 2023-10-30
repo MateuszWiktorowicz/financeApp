@@ -22,7 +22,15 @@ int main()
 
     userManager.registerUser();
  userManager.loginUser();
-userManager.changePassword();
-userManager.loginUser();
+ userManager.logout();
+if(userManager.getLoggedInUserId() > 0)
+{
+    userManager.changePassword();
+}
+else
+{
+    cout << "User nie jest zalogowany";
+}
+
     return 0;
 }
