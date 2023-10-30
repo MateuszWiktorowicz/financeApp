@@ -20,3 +20,16 @@ void User::setSurname(string surnam)
 {
     surname = surnam;
 }
+int User::getId()
+{
+    return id;
+}
+string User::getLogin()
+{
+    return login;
+}
+string User::getPassword()
+{
+    return password;
+}
+

@@ -17,4 +17,8 @@ public:
     void setPassword(string pass);
     void setName(string nam);
     void setSurname(string surnam);
+
+    int getId();
+    string getLogin();
+    string getPassword();
 };
