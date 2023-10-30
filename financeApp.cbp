@@ -32,6 +32,12 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="InputMethods.cpp" />
+		<Unit filename="InputMethods.h" />
+		<Unit filename="User.cpp" />
+		<Unit filename="User.h" />
+		<Unit filename="UserManager.cpp" />
+		<Unit filename="UserManager.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />

@@ -60,40 +60,56 @@ bool UserManager::isLoginExist(string log)
 
 int UserManager::loginUser()
 {
-    User user;
     string log = "", pass = "";
 
-    cout << "PODAJ LOGIN: " << endl;
+    cout <<  "Podaj login: ";
     log = InputMethods::readLine();
 
     vector <User>::iterator itr = users.begin();
-
     while (itr != users.end())
     {
         if (itr -> getLogin() == log)
         {
-
-            for (int attempts = 3; attempts > 0; attempts--)
+            for (int numOfAttempts = 3; numOfAttempts > 0; numOfAttempts--)
             {
-                cout << "PODAJ HASLO: " << endl;
+                cout << "Podaj haslo. Pozostalo prob: " << numOfAttempts << ": ";
                 pass = InputMethods::readLine();
+
                 if (itr -> getPassword() == pass)
                 {
-                    return itr -> getId();
-                }
-                else
-                {
-                    cout << "Niepoprawne haslo. Pozostalo prob :" << attempts << endl;
+                    cout << endl << "Zalogowales sie." << endl << endl;
+                    system("pause");
+                    loggedInUserId = itr -> getId();
+                    return  loggedInUserId;
                 }
             }
-            cout << "Wprowadzono 3 razy niepoprawne haslo." << endl;
+            cout << "Wprowadzono 3 razy bledne haslo." << endl;
             system("pause");
             return 0;
         }
         itr++;
     }
-
-    cout << "Nie ma takiego uzytkownika" << endl;
+    cout << "Nie ma uzytkownika z takim loginem" << endl << endl;
     system("pause");
     return 0;
+}
+
+void UserManager::changePassword()
+{
+    string newPassword = "";
+
+    cout << "PODAJ NOWE HASLO: " << endl;
+    newPassword = InputMethods::readLine();
+
+    for (vector <User>::iterator itr = users.begin(); itr < users.end(); itr ++)
+    {
+        if (itr -> getId() == loggedInUserId)
+        {
+            itr -> setPassword(newPassword);
+            cout << "HASLO ZOSTALO ZMIENIONE: " << endl;
+            system("pause");
+            break;
+        }
+    }
+
 }

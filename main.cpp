@@ -18,8 +18,11 @@ int main()
     UserManager userManager;
 
 
+
+
     userManager.registerUser();
-    userManager.registerUser();
-    cout << userManager.loginUser();
+ userManager.loginUser();
+userManager.changePassword();
+userManager.loginUser();
     return 0;
 }
