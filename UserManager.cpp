@@ -13,27 +13,47 @@ void UserManager::registerUser()
 User UserManager::insertNewUser()
 {
     User user;
+    string log;
     system("cls");
 
-    if (users.empty())
-    {
-        user.setId(1);
-    }
+    users.empty() ? user.setId(1) : user.setId(users.back().getId() + 1);
 
     cout << "REJESTRACJA NOWEGO UZYTKOWNIKA:" << endl;
 
-    cout << "Wprowadz login" << endl;
-    user.setLogin(InputMethods::readLine());
+    do
+    {
+        cout << "Wprowadz login" << endl;
+        getline(cin, log);
+        user.setLogin(log);
+        if(isLoginExist(log))
+        {
+            cout << "Login zajety: Wprowadz inny login" << endl;
+        }
+    }
+    while (isLoginExist(log));
+
 
     cout << "Wprowadz haslo" << endl;
-    user.setLogin(InputMethods::readLine());
+    user.setPassword(InputMethods::readLine());
 
     cout << "Wprowadz imie" << endl;
-    user.setLogin(InputMethods::readLine());
+    user.setName(InputMethods::readLine());
 
     cout << "Wprowadz nazwisko" << endl;
-    user.setLogin(InputMethods::readLine());
+    user.setSurname(InputMethods::readLine());
 
     return user;
 
+}
+
+bool UserManager::isLoginExist(string log)
+{
+    for (size_t i = 0; i < users.size(); i++)
+    {
+        if (users[i].getLogin() == log)
+        {
+            return true;
+        }
+    }
+    return false;
 }
