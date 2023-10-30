@@ -3,6 +3,6 @@
 /bin
 /obj
 *depend
-obj/Debug/User.o
 obj/Debug/main.o
+
 
