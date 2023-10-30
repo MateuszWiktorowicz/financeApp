@@ -111,5 +111,14 @@ void UserManager::changePassword()
             break;
         }
     }
+}
 
+void UserManager::logout()
+{
+    loggedInUserId = -1;
+}
+
+int UserManager::getLoggedInUserId()
+{
+    return loggedInUserId;
 }

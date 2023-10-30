@@ -19,6 +19,8 @@ public:
     void registerUser();
     int loginUser();
     void changePassword();
+    void logout();
+    int getLoggedInUserId();
 
 
 };
