@@ -57,3 +57,43 @@ bool UserManager::isLoginExist(string log)
     }
     return false;
 }
+
+int UserManager::loginUser()
+{
+    User user;
+    string log = "", pass = "";
+
+    cout << "PODAJ LOGIN: " << endl;
+    log = InputMethods::readLine();
+
+    vector <User>::iterator itr = users.begin();
+
+    while (itr != users.end())
+    {
+        if (itr -> getLogin() == log)
+        {
+
+            for (int attempts = 3; attempts > 0; attempts--)
+            {
+                cout << "PODAJ HASLO: " << endl;
+                pass = InputMethods::readLine();
+                if (itr -> getPassword() == pass)
+                {
+                    return itr -> getId();
+                }
+                else
+                {
+                    cout << "Niepoprawne haslo. Pozostalo prob :" << attempts << endl;
+                }
+            }
+            cout << "Wprowadzono 3 razy niepoprawne haslo." << endl;
+            system("pause");
+            return 0;
+        }
+        itr++;
+    }
+
+    cout << "Nie ma takiego uzytkownika" << endl;
+    system("pause");
+    return 0;
+}
