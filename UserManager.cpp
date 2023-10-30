@@ -6,6 +6,12 @@ void UserManager::registerUser()
 
     users.push_back(user);
 
+    for (auto user : users)
+    {
+        cout << user.getId() << endl;
+        cout << user.getLogin() << endl;
+        cout << user.getPassword() << endl;
+    }
     cout << "Rejestracja udana" << endl;
     system("pause");
 }
@@ -15,10 +21,8 @@ User UserManager::insertNewUser()
     User user;
     system("cls");
 
-    if (users.empty())
-    {
-        user.setId(1);
-    }
+    users.empty() ? user.setId(1) : user.setId(users.back().getId() + 1);
+
 
     cout << "REJESTRACJA NOWEGO UZYTKOWNIKA:" << endl;
 
@@ -26,13 +30,13 @@ User UserManager::insertNewUser()
     user.setLogin(InputMethods::readLine());
 
     cout << "Wprowadz haslo" << endl;
-    user.setLogin(InputMethods::readLine());
+    user.setPassword(InputMethods::readLine());
 
     cout << "Wprowadz imie" << endl;
-    user.setLogin(InputMethods::readLine());
+    user.setName(InputMethods::readLine());
 
     cout << "Wprowadz nazwisko" << endl;
-    user.setLogin(InputMethods::readLine());
+    user.setSurname(InputMethods::readLine());
 
     return user;
 

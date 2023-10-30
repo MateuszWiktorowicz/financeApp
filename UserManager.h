@@ -3,6 +3,7 @@
 
 
 #include "User.h"
+#include "InputMethods.h"
 
 using namespace std;
 
@@ -10,11 +11,12 @@ class UserManager
 {
     int loggedInUserId;
     vector <User> users;
-    User insertNewUser();
+
 
 
 public:
     void registerUser();
+    User insertNewUser();
 
 };
 
