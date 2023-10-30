@@ -20,7 +20,6 @@ User UserManager::insertNewUser()
 
     cout << "REJESTRACJA NOWEGO UZYTKOWNIKA:" << endl;
 
-
     do
     {
         cout << "Wprowadz login" << endl;
@@ -49,14 +48,12 @@ User UserManager::insertNewUser()
 
 bool UserManager::isLoginExist(string log)
 {
-    bool loginExists = false;
     for (size_t i = 0; i < users.size(); i++)
     {
         if (users[i].getLogin() == log)
         {
-            loginExists = true;
+            return true;
         }
-
     }
-    return loginExists;
+    return false;
 }
