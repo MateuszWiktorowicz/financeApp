@@ -9,5 +9,6 @@ class XmlFile
     string const FILE_NAME;
 
 public:
+    XmlFile(string fileName) : FILE_NAME(fileName) {};
     string getFileName();
 };
