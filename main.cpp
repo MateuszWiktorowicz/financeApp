@@ -1,7 +1,7 @@
 #include <iostream>
 
 
-#include "UserManager.h"
+#include "FileWithUsers.h"
 using namespace std;
 
 
@@ -11,26 +11,17 @@ int testUserManager()
     return 0;
 }
 
-//test user Manager
+//test FileWithUsers
 int main()
 {
     cout << "Hello world!" << endl;
-    UserManager userManager;
+    FileWithUsers fileWithUsers("users.txt");
+    User user(1, "mat", "wik", "mateusz", "Wiktorowicz");
 
 
 
+    fileWithUsers.appendUserToXmlFile(user);
 
-    userManager.registerUser();
- userManager.loginUser();
- userManager.logout();
-if(userManager.getLoggedInUserId() > 0)
-{
-    userManager.changePassword();
-}
-else
-{
-    cout << "User nie jest zalogowany";
-}
 
     return 0;
 }
