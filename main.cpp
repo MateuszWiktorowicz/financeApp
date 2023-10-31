@@ -16,11 +16,22 @@ int main()
 {
     cout << "Hello world!" << endl;
     FileWithUsers fileWithUsers("users.txt");
-    User user(1, "mat", "wik", "mateusz", "Wiktorowicz");
+    vector <User> users;
+
+    users = fileWithUsers.loadUsersFromFile();
+
+    for (auto user : users)
+    {
+        cout << user.getId() << endl;
+        cout << user.getLogin() << endl;
+        cout << user.getPassword() << endl;
+        cout << user.getName() << endl;
+        cout << user.getSurname() << endl;
+    }
 
 
 
-    fileWithUsers.appendUserToXmlFile(user);
+
 
 
     return 0;
