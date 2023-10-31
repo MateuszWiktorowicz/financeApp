@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 
 #include "Markup.h"
 
@@ -11,4 +12,5 @@ class XmlFile
 public:
     XmlFile(string fileName) : FILE_NAME(fileName) {};
     string getFileName();
+    bool isFileEmpty(fstream &textFile);
 };
