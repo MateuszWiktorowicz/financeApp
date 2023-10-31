@@ -32,4 +32,12 @@ string User::getPassword()
 {
     return password;
 }
+string User::getName()
+{
+    return name;
+}
+string User::getSurname()
+{
+    return surname;
+}
 
