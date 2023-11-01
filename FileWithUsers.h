@@ -4,7 +4,8 @@
 
 #include "XmlFile.h"
 #include "User.h"
-#include "Markup.h"
+#include "ConvertMethods.h"
+
 
 using namespace std;
 
@@ -14,4 +15,5 @@ public:
     FileWithUsers(string fileName) : XmlFile(fileName) {};
     void appendUserToXmlFile(User user);
     vector <User> loadUsersFromFile();
+    void changeUserPasswordInFile(vector <User> users);
 };

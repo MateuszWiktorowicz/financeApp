@@ -106,6 +106,8 @@ void UserManager::changePassword()
         if (itr -> getId() == loggedInUserId)
         {
             itr -> setPassword(newPassword);
+            fileWithUsers.changeUserPasswordInFile(users);
+
             cout << "HASLO ZOSTALO ZMIENIONE: " << endl;
             system("pause");
             break;
@@ -122,3 +124,4 @@ int UserManager::getLoggedInUserId()
 {
     return loggedInUserId;
 }
+

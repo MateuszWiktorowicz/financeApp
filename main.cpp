@@ -14,24 +14,15 @@ int testUserManager()
 //test FileWithUsers
 int main()
 {
-    cout << "Hello world!" << endl;
-    FileWithUsers fileWithUsers("users.txt");
-    vector <User> users;
-
-    users = fileWithUsers.loadUsersFromFile();
-
-    for (auto user : users)
-    {
-        cout << user.getId() << endl;
-        cout << user.getLogin() << endl;
-        cout << user.getPassword() << endl;
-        cout << user.getName() << endl;
-        cout << user.getSurname() << endl;
-    }
+FileWithUsers fileWithUsers("users.xml");
 
 
-
-
+User user1(1, "mat", "wik", "mateusz", "wiktoroiwcz");
+User user2(2, "mat1", "wik1", "mateusz1", "wiktoroiwcz1");
+vector <User> users;
+users.push_back(user1);
+users.push_back(user2);
+fileWithUsers.changeUserPasswordInFile(users);
 
 
     return 0;

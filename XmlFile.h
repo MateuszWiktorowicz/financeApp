@@ -1,3 +1,7 @@
+#ifndef XMLFILE_H
+#define XMLFILE_H
+
+
 #include <iostream>
 #include <fstream>
 
@@ -14,3 +18,6 @@ public:
     string getFileName();
     bool isFileEmpty(fstream &textFile);
 };
+
+
+#endif
