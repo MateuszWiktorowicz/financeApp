@@ -55,3 +55,13 @@ vector <User> FileWithUsers::loadUsersFromFile()
     }
     return users;
 }
+
+void FileWithUsers::changeUserPasswordInFile(vector <User> users)
+{
+    remove("users.xml");
+    for (auto user : users)
+    {
+        appendUserToXmlFile(user);
+    }
+
+}

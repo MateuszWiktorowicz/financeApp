@@ -1,3 +1,7 @@
+#ifndef CONVERTMETHODS_H
+#define CONVERTMETHODS_H
+
+
 #include <iostream>
 #include <sstream>
 #include <algorithm>
@@ -13,3 +17,6 @@ public:
     static string getNumber(string text, int signPosition);
     static int convertStringIntoInt(string num);
 };
+
+
+#endif
