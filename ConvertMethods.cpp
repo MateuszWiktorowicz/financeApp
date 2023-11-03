@@ -51,3 +51,35 @@ vector <int> ConvertMethods::getCurrentDate()
 
     return date;
 }
+
+vector <int> ConvertMethods::getChosenDate()
+{
+    vector <int> intDateVector;
+    string date = enterDate();
+
+    for (size_t i = 0; i < date.size(); i++)
+    {
+        if (date[i] != '/')
+        {
+            intDateVector.push_back(date[i]);
+        }
+    }
+    return intDateVector;
+}
+
+string ConvertMethods::enterDate()
+{
+    string date;
+    cout << "WPROWADZ DATE W FORMACIE YYYY/MM/DD" << endl;
+    cout << "DATA NIE WCZESNIEJSZA NIZ 2000/01/01" << endl;
+
+    do
+    {
+        date = InputMethods::readLine();
+        cout << (ValidationMethods::isDateCorrect(date) ? "WPROWADZONO POPRAWNA DATE" : "DATA W NIEPOPRWANYM FORMACIE. WPROWADZ JESZCZE RAZ") << endl;
+    }
+    while (ValidationMethods::isDateCorrect(date));
+
+    return date;
+}
+

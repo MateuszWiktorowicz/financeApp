@@ -8,10 +8,14 @@
 #include <sstream>
 #include <algorithm>
 
+#include "InputMethods.h"
+#include "ValidationMethods.h"
+
 using namespace std;
 
 class ConvertMethods
 {
+    static string enterDate();
 public:
 
     static string convertIntegerToString(int num);
@@ -19,6 +23,8 @@ public:
     static string getNumber(string text, int signPosition);
     static int convertStringIntoInt(string num);
     static vector <int> getCurrentDate();
+    static vector <int> getChosenDate();
+
 };
 
 
