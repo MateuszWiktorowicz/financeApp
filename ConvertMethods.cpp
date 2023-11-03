@@ -37,3 +37,17 @@ int ConvertMethods::convertStringIntoInt(string num)
 
     return intNumber;
 }
+
+vector <int> ConvertMethods::getCurrentDate()
+{
+    vector <int> date;
+    time_t now = time(0);
+    tm* currentDate = localtime(&now);
+
+
+    date.push_back(currentDate -> tm_year + 1900);
+    date.push_back(currentDate -> tm_mon + 1);
+    date.push_back(currentDate -> tm_mday);
+
+    return date;
+}

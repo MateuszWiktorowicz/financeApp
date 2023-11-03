@@ -3,6 +3,8 @@
 
 
 #include <iostream>
+#include <vector>
+#include <ctime>
 #include <sstream>
 #include <algorithm>
 
@@ -16,6 +18,7 @@ public:
     static string uppercaseFirstLetterLowercaseElseLetters(string text);
     static string getNumber(string text, int signPosition);
     static int convertStringIntoInt(string num);
+    static vector <int> getCurrentDate();
 };
 
 
