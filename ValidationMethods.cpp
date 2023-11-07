@@ -2,7 +2,7 @@
 
 bool ValidationMethods::isDateCorrect(string dataToCheck)
 {
-    return isDateFormatCorrect(dataToCheck) && isDateYearsMonthsDaysCorrect(dataToCheck);
+    return (isDateFormatCorrect(dataToCheck) && isDateYearsMonthsDaysCorrect(dataToCheck));
 }
 
 
@@ -12,7 +12,7 @@ bool ValidationMethods::isDateFormatCorrect(string dataToCheck)
     {
         return false;
     }
-    if (dataToCheck[4] == '/' && dataToCheck[7] == '/')
+    if (dataToCheck[4] != '/' && dataToCheck[7] != '/')
     {
         return false;
     }
@@ -28,7 +28,6 @@ bool ValidationMethods::isDateFormatCorrect(string dataToCheck)
     }
     return true;
 }
-
 
 bool ValidationMethods::isDateYearsMonthsDaysCorrect(string dataToCheck)
 {

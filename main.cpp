@@ -1,7 +1,7 @@
 #include <iostream>
 
 
-#include "FileWithUsers.h"
+#include "ValidationMethods.h"
 using namespace std;
 
 
@@ -14,15 +14,10 @@ int testUserManager()
 //test FileWithUsers
 int main()
 {
-FileWithUsers fileWithUsers("users.xml");
+ValidationMethods validationMethods;
 
-
-User user1(1, "mat", "wik", "mateusz", "wiktoroiwcz");
-User user2(2, "mat1", "wik1", "mateusz1", "wiktoroiwcz1");
-vector <User> users;
-users.push_back(user1);
-users.push_back(user2);
-fileWithUsers.changeUserPasswordInFile(users);
+string date = "2004/02/29";
+cout << (validationMethods.isDateCorrect(date) ? "true" : "false");
 
 
     return 0;
