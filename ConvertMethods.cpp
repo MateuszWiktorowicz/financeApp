@@ -102,3 +102,20 @@ string ConvertMethods::convertVectorDateIntoStringFormat(vector <int> date)
     }
     return strDate;
 }
+double ConvertMethods::convertStringToDouble(string str)
+{
+    return atof(str.c_str());
+}
+
+double ConvertMethods::replaceCommasIntoDots(double value)
+{
+    string str = ConvertMethods::convertIntegerToString(value);
+    for (size_t i = 0; i < str.size(); i++)
+    {
+        if (str[i] == ',')
+        {
+            str[i] = '.';
+        }
+    }
+    return ConvertMethods::convertStringToDouble(str);
+}

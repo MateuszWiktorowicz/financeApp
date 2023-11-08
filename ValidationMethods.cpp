@@ -124,9 +124,6 @@ bool ValidationMethods::isNotLaterThanLastDayOfCurrentMonth(string dataToCheck)
         return false;
     }
 
-
-
-
 }
 
 int ValidationMethods::getCurrentDateLastDayOfMonth(vector <int> currentDate)
