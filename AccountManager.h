@@ -14,6 +14,6 @@ class AccountManager
     vector <Operation> operations;
 
 public:
-    Operation addIncome();
+    void addIncome();
 
 };

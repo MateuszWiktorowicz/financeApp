@@ -24,6 +24,7 @@ public:
     static int convertStringIntoInt(string num);
     static vector <int> getCurrentDate();
     static vector <int> getChosenDate();
+    static string convertVectorDateIntoStringFormat(vector <int> date);
 
 };
 

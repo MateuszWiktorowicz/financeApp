@@ -1,23 +1,16 @@
 #include <iostream>
 
 
-#include "ValidationMethods.h"
+#include "AccountManager.h"
 using namespace std;
 
 
-int testUserManager()
-{
-    cout << "Hello world!" << endl;
-    return 0;
-}
-
-//test FileWithUsers
 int main()
 {
-ValidationMethods validationMethods;
+AccountManager accountManager;
 
-string date = "2004/02/29";
-cout << (validationMethods.isDateCorrect(date) ? "true" : "false");
+accountManager.addIncome();
+
 
 
     return 0;

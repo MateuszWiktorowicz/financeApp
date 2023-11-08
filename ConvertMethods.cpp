@@ -70,7 +70,7 @@ vector <int> ConvertMethods::getChosenDate()
 string ConvertMethods::enterDate()
 {
     string date;
-    cout << "WPROWADZ DATE W FORMACIE YYYY/MM/DD" << endl;
+    cout << "WPROWADZ DATE W FORMACIE YYYY-MM-DD" << endl;
     cout << "DATA NIE WCZESNIEJSZA NIZ 2000/01/01" << endl;
 
     do
@@ -78,8 +78,27 @@ string ConvertMethods::enterDate()
         date = InputMethods::readLine();
         cout << (ValidationMethods::isDateCorrect(date) ? "WPROWADZONO POPRAWNA DATE" : "DATA W NIEPOPRWANYM FORMACIE. WPROWADZ JESZCZE RAZ") << endl;
     }
-    while (ValidationMethods::isDateCorrect(date));
+    while (!ValidationMethods::isDateCorrect(date));
 
     return date;
 }
 
+string ConvertMethods::convertVectorDateIntoStringFormat(vector <int> date)
+{
+    string strDate = "";
+    char container;
+    stringstream stream;
+
+    for (size_t i = 0; i < 8; i++)
+    {
+
+        if (i == 4 || i == 6)
+        {
+            strDate.push_back('-');
+        }
+        stream << date[i];
+        stream >> container;
+        strDate.push_back(container);
+    }
+    return strDate;
+}
