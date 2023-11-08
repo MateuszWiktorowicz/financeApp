@@ -30,4 +30,5 @@ void AccountManager::addIncome()
     operation.setAmount(sum);
 
     operations.push_back(operation);
+    fileWithIncomes.appendOperationToXmlFile(operation);
 }

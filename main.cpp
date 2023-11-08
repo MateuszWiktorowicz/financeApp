@@ -7,7 +7,7 @@ using namespace std;
 
 int main()
 {
-AccountManager accountManager;
+AccountManager accountManager("incomes.xml", 1);
 
 accountManager.addIncome();
 

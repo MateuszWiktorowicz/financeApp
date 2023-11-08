@@ -6,14 +6,16 @@
 #include "Operation.h"
 #include "ConvertMethods.h"
 
-
 using namespace std;
 
 class FileWithIncomes : public XmlFile
 {
+
+    int operationId;
+
 public:
     FileWithIncomes(string fileName) : XmlFile(fileName) {};
-   void appendOperationToXmlFile(Operation operation);
+    virtual void appendOperationToXmlFile(Operation operation) = 0;
 
 
 };

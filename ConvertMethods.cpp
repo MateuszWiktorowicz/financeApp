@@ -8,6 +8,20 @@ string ConvertMethods::convertIntegerToString(int num)
     return str;
 }
 
+string ConvertMethods::convertDoubleToString(double num)
+{
+    ostringstream ss;
+    ss << num;
+    string str = ss.str();
+    return str;
+}
+
+int ConvertMethods::convertCharToInt(char ch)
+{
+    int num = ch - '0';
+    return num;
+}
+
 string ConvertMethods::uppercaseFirstLetterLowercaseElseLetters(string text)
 {
     if (!text.empty())
@@ -46,7 +60,11 @@ vector <int> ConvertMethods::getCurrentDate()
 
 
     date.push_back(currentDate -> tm_year + 1900);
+
+    if ((currentDate -> tm_mon + 1) < 10) {date.push_back(0);}
     date.push_back(currentDate -> tm_mon + 1);
+
+    if ((currentDate -> tm_mday) < 10) {date.push_back(0);}
     date.push_back(currentDate -> tm_mday);
 
     return date;
@@ -59,9 +77,9 @@ vector <int> ConvertMethods::getChosenDate()
 
     for (size_t i = 0; i < date.size(); i++)
     {
-        if (date[i] != '/')
+        if (date[i] != '-')
         {
-            intDateVector.push_back(date[i]);
+            intDateVector.push_back(convertCharToInt((date[i])));
         }
     }
     return intDateVector;
@@ -71,7 +89,7 @@ string ConvertMethods::enterDate()
 {
     string date;
     cout << "WPROWADZ DATE W FORMACIE YYYY-MM-DD" << endl;
-    cout << "DATA NIE WCZESNIEJSZA NIZ 2000/01/01" << endl;
+    cout << "DATA NIE WCZESNIEJSZA NIZ 2000-01-01" << endl;
 
     do
     {
@@ -102,6 +120,7 @@ string ConvertMethods::convertVectorDateIntoStringFormat(vector <int> date)
     }
     return strDate;
 }
+
 double ConvertMethods::convertStringToDouble(string str)
 {
     return atof(str.c_str());

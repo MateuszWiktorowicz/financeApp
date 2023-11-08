@@ -1,3 +1,6 @@
+#ifndef OPERATION_H
+#define OPERATION_H
+
 #include <iostream>
 #include <vector>
 
@@ -32,3 +35,6 @@ public:
     string getItem();
     double getAmount();
 };
+
+
+#endif

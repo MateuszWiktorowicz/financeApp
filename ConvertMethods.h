@@ -27,6 +27,8 @@ public:
     static string convertVectorDateIntoStringFormat(vector <int> date);
     static double replaceCommasIntoDots(double value);
     static double convertStringToDouble(string str);
+    static string convertDoubleToString(double num);
+    static int convertCharToInt(char ch);
 
 
 };
