@@ -8,18 +8,6 @@ void Operation::setUserId(int id)
 {
     userId = id;
 }
-void Operation::setDateYears(int years)
-{
-    dateYears = years;
-}
-void Operation::setDateMonths(int months)
-{
-    dateMonths = months;
-}
-void Operation::setDateDays(int days)
-{
-    dateDays = days;
-}
 void Operation::setDate(vector <int> dateVector)
 {
     date = dateVector;
@@ -40,18 +28,6 @@ int Operation::getOperationId()
 int Operation::getUserId()
 {
     return userId;
-}
-int Operation::getDateYears()
-{
-    return dateYears;
-}
-int Operation::getDateMonths()
-{
-    return dateMonths;
-}
-int Operation::getDateDays()
-{
-    return dateDays;
 }
 vector <int> Operation::getDate()
 {

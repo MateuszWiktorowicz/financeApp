@@ -61,10 +61,16 @@ vector <int> ConvertMethods::getCurrentDate()
 
     date.push_back(currentDate -> tm_year + 1900);
 
-    if ((currentDate -> tm_mon + 1) < 10) {date.push_back(0);}
+    if ((currentDate -> tm_mon + 1) < 10)
+    {
+        date.push_back(0);
+    }
     date.push_back(currentDate -> tm_mon + 1);
 
-    if ((currentDate -> tm_mday) < 10) {date.push_back(0);}
+    if ((currentDate -> tm_mday) < 10)
+    {
+        date.push_back(0);
+    }
     date.push_back(currentDate -> tm_mday);
 
     return date;
@@ -126,15 +132,13 @@ double ConvertMethods::convertStringToDouble(string str)
     return atof(str.c_str());
 }
 
-double ConvertMethods::replaceCommasIntoDots(double value)
+string ConvertMethods::replaceCommasIntoDots(string str)
 {
-    string str = ConvertMethods::convertIntegerToString(value);
+    string str2 = "";
     for (size_t i = 0; i < str.size(); i++)
     {
-        if (str[i] == ',')
-        {
-            str[i] = '.';
-        }
+        (str[i] == ',') ? str2 += '.' : str2 += str[i];
+
     }
-    return ConvertMethods::convertStringToDouble(str);
+    return str2;
 }

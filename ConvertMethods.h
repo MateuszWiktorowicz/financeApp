@@ -25,7 +25,7 @@ public:
     static vector <int> getCurrentDate();
     static vector <int> getChosenDate();
     static string convertVectorDateIntoStringFormat(vector <int> date);
-    static double replaceCommasIntoDots(double value);
+    static string replaceCommasIntoDots(string str);
     static double convertStringToDouble(string str);
     static string convertDoubleToString(double num);
     static int convertCharToInt(char ch);

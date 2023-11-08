@@ -26,8 +26,7 @@ void AccountManager::addIncome()
     operation.setItem(kindOfIncome);
 
     cout << "Wpisz kwote przychodu" << endl;
-    double sum = ConvertMethods::replaceCommasIntoDots(InputMethods::readNumber());
-    operation.setAmount(sum);
+    operation.setAmount(InputMethods::readDouble());
 
     operations.push_back(operation);
     fileWithIncomes.appendOperationToXmlFile(operation);
