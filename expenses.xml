@@ -1,0 +1,16 @@
+<Expenses>
+<Expense>
+<operationId>1</operationId>
+<userId>1</userId>
+<date>2023-11-10</date>
+<item>1</item>
+<amount>1</amount>
+</Expense>
+<Expense>
+<operationId>1</operationId>
+<userId>1</userId>
+<date>2001-11-11</date>
+<item>1</item>
+<amount>1</amount>
+</Expense>
+</Expenses>

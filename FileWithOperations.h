@@ -1,3 +1,6 @@
+#ifndef FILEWITHOPERATIONS_H
+#define FILEWITHOPERATIONS_H
+
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -19,3 +22,6 @@ public:
 
 
 };
+
+
+#endif

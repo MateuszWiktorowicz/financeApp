@@ -4,6 +4,7 @@
 #include "InputMethods.h"
 #include "ConvertMethods.h"
 #include "FileWithIncomes.h"
+#include "FileWithExpenses.h"
 #include "Operation.h"
 
 using namespace std;
@@ -13,12 +14,14 @@ class AccountManager
     int ID_LOGGED_IN_USER;
     vector <Operation> operations;
     FileWithIncomes fileWithIncomes;
+    FileWithExpenses fileWithExpenses;
 
 public:
-    AccountManager(string nameOfFileIncomes, int idLoggedInUser)
-    : ID_LOGGED_IN_USER(idLoggedInUser), fileWithIncomes(nameOfFileIncomes)
+    AccountManager(int idLoggedInUser, string nameOfFileIncomes, string nameOfFileExpenses)
+    : ID_LOGGED_IN_USER(idLoggedInUser), fileWithIncomes(nameOfFileIncomes), fileWithExpenses(nameOfFileExpenses)
     {
     };
     void addIncome();
+    void addExpense();
 
 };
