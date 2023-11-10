@@ -16,8 +16,9 @@ using namespace std;
 class ConvertMethods
 {
     static string enterDate();
-public:
 
+public:
+    static vector <int> convertStringDateFormatToIntVector(string strDateFormat);
     static string convertIntegerToString(int num);
     static string uppercaseFirstLetterLowercaseElseLetters(string text);
     static string getNumber(string text, int signPosition);
@@ -29,6 +30,9 @@ public:
     static double convertStringToDouble(string str);
     static string convertDoubleToString(double num);
     static int convertCharToInt(char ch);
+    static int getIntegerYearFromStringDateFormat(string strDateFormat);
+    static int getIntegerMonthFromStringDateFormat(string strDateFormat);
+    static int getIntegerDayFromStringDateFormat(string strDateFormat);
 
 
 };

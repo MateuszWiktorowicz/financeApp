@@ -33,9 +33,9 @@ bool ValidationMethods::isDateYearsMonthsDaysCorrect(string dataToCheck)
 {
     int year, month, day;
 
-    year = getIntegerYearFromStringDateFormat(dataToCheck);
-    month = getIntegerMonthFromStringDateFormat(dataToCheck);
-    day = getIntegerDayFromStringDateFormat(dataToCheck);
+    year = ConvertMethods::getIntegerYearFromStringDateFormat(dataToCheck);
+    month = ConvertMethods::getIntegerMonthFromStringDateFormat(dataToCheck);
+    day = ConvertMethods::getIntegerDayFromStringDateFormat(dataToCheck);
 
     if (isYearCorrect(year) && isMonthCorrect(month) && isDayCorrect(year, month, day) && isNotLaterThanLastDayOfCurrentMonth(dataToCheck))
     {
@@ -48,41 +48,6 @@ bool ValidationMethods::isDateYearsMonthsDaysCorrect(string dataToCheck)
 
 }
 
-int ValidationMethods::getIntegerYearFromStringDateFormat(string dateInProgramFormat)
-{
-    string strDataYear = "";
-
-    for (int i = 0; i < 4; i++)
-    {
-        strDataYear.push_back(dateInProgramFormat[i]);
-
-    }
-    return ConvertMethods::convertStringIntoInt(strDataYear);
-}
-
-int ValidationMethods::getIntegerMonthFromStringDateFormat(string dateInProgramFormat)
-{
-    string strDataMonth = "";
-
-    for (int i = 5; i < 7; i++)
-    {
-        strDataMonth.push_back(dateInProgramFormat[i]);
-
-    }
-    return ConvertMethods::convertStringIntoInt(strDataMonth);
-}
-
-int ValidationMethods::getIntegerDayFromStringDateFormat(string dateInProgramFormat)
-{
-    string strDataDays = "";
-
-    for (int i = 8; i < 10; i++)
-    {
-        strDataDays.push_back(dateInProgramFormat[i]);
-
-    }
-    return ConvertMethods::convertStringIntoInt(strDataDays);
-}
 
 bool ValidationMethods::isYearCorrect(int yearToCheck)
 {
@@ -106,16 +71,16 @@ bool ValidationMethods::isNotLaterThanLastDayOfCurrentMonth(string dataToCheck)
     vector <int> currentDate = ConvertMethods::getCurrentDate();
     string currentDateInStringFormatWithDashes = ConvertMethods::convertVectorDateIntoStringFormat(currentDate);
 
-    if ((getIntegerYearFromStringDateFormat(dataToCheck) <= getIntegerYearFromStringDateFormat(currentDateInStringFormatWithDashes))
-        && (getIntegerMonthFromStringDateFormat(dataToCheck) <= getIntegerMonthFromStringDateFormat(currentDateInStringFormatWithDashes)))
+    if ((ConvertMethods::getIntegerYearFromStringDateFormat(dataToCheck) <= ConvertMethods::getIntegerYearFromStringDateFormat(currentDateInStringFormatWithDashes))
+        && (ConvertMethods::getIntegerMonthFromStringDateFormat(dataToCheck) <= ConvertMethods::getIntegerMonthFromStringDateFormat(currentDateInStringFormatWithDashes)))
     {
         int maxDay = getCurrentDateLastDayOfMonth(currentDate);
-        int day = getIntegerDayFromStringDateFormat(dataToCheck);
+        int day = ConvertMethods::getIntegerDayFromStringDateFormat(dataToCheck);
 
         return day <= maxDay;
     }
-    else if ((getIntegerYearFromStringDateFormat(dataToCheck) <= getIntegerYearFromStringDateFormat(currentDateInStringFormatWithDashes))
-        && (getIntegerMonthFromStringDateFormat(dataToCheck) < getIntegerMonthFromStringDateFormat(currentDateInStringFormatWithDashes)))
+    else if ((ConvertMethods::getIntegerYearFromStringDateFormat(dataToCheck) <= ConvertMethods::getIntegerYearFromStringDateFormat(currentDateInStringFormatWithDashes))
+        && (ConvertMethods::getIntegerMonthFromStringDateFormat(dataToCheck) < ConvertMethods::getIntegerMonthFromStringDateFormat(currentDateInStringFormatWithDashes)))
         {
             return true;
         }
@@ -133,9 +98,9 @@ int ValidationMethods::getCurrentDateLastDayOfMonth(vector <int> currentDate)
 
     currentDateInStringFormat = ConvertMethods::convertVectorDateIntoStringFormat(currentDate);
 
-    currentYear = getIntegerYearFromStringDateFormat(currentDateInStringFormat);
-    currentMonth = getIntegerMonthFromStringDateFormat(currentDateInStringFormat);
-    currentDay = getIntegerDayFromStringDateFormat(currentDateInStringFormat);
+    currentYear = ConvertMethods::getIntegerYearFromStringDateFormat(currentDateInStringFormat);
+    currentMonth = ConvertMethods::getIntegerMonthFromStringDateFormat(currentDateInStringFormat);
+    currentDay = ConvertMethods::getIntegerDayFromStringDateFormat(currentDateInStringFormat);
 
     return countMaxDayInMonth(currentYear, currentMonth, currentDay);
 }

@@ -15,9 +15,6 @@ class ValidationMethods
     static bool isYearCorrect(int yearToCheck);
     static bool isMonthCorrect(int monthToCheck);
     static bool isDayCorrect(int year, int month, int day);
-    static int getIntegerYearFromStringDateFormat(string dateInProgramFormat);
-    static int getIntegerMonthFromStringDateFormat(string dateInProgramFormat);
-    static int getIntegerDayFromStringDateFormat(string dateInProgramFormat);
     static int countMaxDayInMonth(int year, int month, int day);
     static bool isNotLaterThanLastDayOfCurrentMonth(string dataToCheck);
     static int getCurrentDateLastDayOfMonth(vector <int> currentDate);

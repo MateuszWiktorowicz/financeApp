@@ -76,19 +76,23 @@ vector <int> ConvertMethods::getCurrentDate()
     return date;
 }
 
-vector <int> ConvertMethods::getChosenDate()
+vector <int> ConvertMethods::convertStringDateFormatToIntVector(string strDateFormat)
 {
     vector <int> intDateVector;
-    string date = enterDate();
 
-    for (size_t i = 0; i < date.size(); i++)
-    {
-        if (date[i] != '-')
-        {
-            intDateVector.push_back(convertCharToInt((date[i])));
-        }
-    }
+    intDateVector.push_back(getIntegerYearFromStringDateFormat(strDateFormat));
+    intDateVector.push_back(getIntegerMonthFromStringDateFormat(strDateFormat));
+    intDateVector.push_back(getIntegerDayFromStringDateFormat(strDateFormat));
+
     return intDateVector;
+}
+
+vector <int> ConvertMethods::getChosenDate()
+{
+
+    string date = enterDate();
+    return convertStringDateFormatToIntVector(date);
+
 }
 
 string ConvertMethods::enterDate()
@@ -110,19 +114,16 @@ string ConvertMethods::enterDate()
 string ConvertMethods::convertVectorDateIntoStringFormat(vector <int> date)
 {
     string strDate = "";
-    char container;
-    stringstream stream;
 
-    for (size_t i = 0; i < 8; i++)
+    for (size_t i = 0; i < date.size(); i++)
     {
 
-        if (i == 4 || i == 6)
+        if (i == 1 || i == 2)
         {
-            strDate.push_back('-');
+            strDate += "-";
         }
-        stream << date[i];
-        stream >> container;
-        strDate.push_back(container);
+
+        strDate += convertIntegerToString(date[i]);
     }
     return strDate;
 }
@@ -142,3 +143,40 @@ string ConvertMethods::replaceCommasIntoDots(string str)
     }
     return str2;
 }
+
+int ConvertMethods::getIntegerYearFromStringDateFormat(string strDateFormat)
+{
+    string strDataYear = "";
+
+    for (int i = 0; i < 4; i++)
+    {
+        strDataYear.push_back(strDateFormat[i]);
+
+    }
+    return convertStringIntoInt(strDataYear);
+}
+
+int ConvertMethods::getIntegerMonthFromStringDateFormat(string strDateFormat)
+{
+    string strDataMonth = "";
+
+    for (int i = 5; i < 7; i++)
+    {
+        strDataMonth.push_back(strDateFormat[i]);
+
+    }
+    return convertStringIntoInt(strDataMonth);
+}
+
+int ConvertMethods::getIntegerDayFromStringDateFormat(string strDateFormat)
+{
+    string strDataDays = "";
+
+    for (int i = 8; i < 10; i++)
+    {
+        strDataDays.push_back(strDateFormat[i]);
+
+    }
+    return convertStringIntoInt(strDataDays);
+}
+
