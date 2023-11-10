@@ -3,16 +3,18 @@
 #include <vector>
 
 #include "XmlFile.h"
+#include "FileWithOperations.h"
 #include "Operation.h"
 #include "ConvertMethods.h"
 
 
 using namespace std;
 
-class FileWithIncomes : public XmlFile
+class FileWithIncomes : public FileWithOperations
+
 {
 public:
-    FileWithIncomes(string fileName) : XmlFile(fileName) {};
+    FileWithIncomes(string fileName) : FileWithOperations(fileName) {};
    void appendOperationToXmlFile(Operation operation);
 
 
