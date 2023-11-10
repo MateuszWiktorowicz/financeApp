@@ -8,6 +8,20 @@ string ConvertMethods::convertIntegerToString(int num)
     return str;
 }
 
+string ConvertMethods::convertDoubleToString(double num)
+{
+    ostringstream ss;
+    ss << num;
+    string str = ss.str();
+    return str;
+}
+
+int ConvertMethods::convertCharToInt(char ch)
+{
+    int num = ch - '0';
+    return num;
+}
+
 string ConvertMethods::uppercaseFirstLetterLowercaseElseLetters(string text)
 {
     if (!text.empty())
@@ -46,32 +60,46 @@ vector <int> ConvertMethods::getCurrentDate()
 
 
     date.push_back(currentDate -> tm_year + 1900);
+
+    if ((currentDate -> tm_mon + 1) < 10)
+    {
+        date.push_back(0);
+    }
     date.push_back(currentDate -> tm_mon + 1);
+
+    if ((currentDate -> tm_mday) < 10)
+    {
+        date.push_back(0);
+    }
     date.push_back(currentDate -> tm_mday);
 
     return date;
 }
 
-vector <int> ConvertMethods::getChosenDate()
+vector <int> ConvertMethods::convertStringDateFormatToIntVector(string strDateFormat)
 {
     vector <int> intDateVector;
-    string date = enterDate();
 
-    for (size_t i = 0; i < date.size(); i++)
-    {
-        if (date[i] != '/')
-        {
-            intDateVector.push_back(date[i]);
-        }
-    }
+    intDateVector.push_back(getIntegerYearFromStringDateFormat(strDateFormat));
+    intDateVector.push_back(getIntegerMonthFromStringDateFormat(strDateFormat));
+    intDateVector.push_back(getIntegerDayFromStringDateFormat(strDateFormat));
+
     return intDateVector;
+}
+
+vector <int> ConvertMethods::getChosenDate()
+{
+
+    string date = enterDate();
+    return convertStringDateFormatToIntVector(date);
+
 }
 
 string ConvertMethods::enterDate()
 {
     string date;
     cout << "WPROWADZ DATE W FORMACIE YYYY-MM-DD" << endl;
-    cout << "DATA NIE WCZESNIEJSZA NIZ 2000/01/01" << endl;
+    cout << "DATA NIE WCZESNIEJSZA NIZ 2000-01-01" << endl;
 
     do
     {
@@ -86,36 +114,69 @@ string ConvertMethods::enterDate()
 string ConvertMethods::convertVectorDateIntoStringFormat(vector <int> date)
 {
     string strDate = "";
-    char container;
-    stringstream stream;
 
-    for (size_t i = 0; i < 8; i++)
+    for (size_t i = 0; i < date.size(); i++)
     {
 
-        if (i == 4 || i == 6)
+        if (i == 1 || i == 2)
         {
-            strDate.push_back('-');
+            strDate += "-";
         }
-        stream << date[i];
-        stream >> container;
-        strDate.push_back(container);
+
+        strDate += convertIntegerToString(date[i]);
     }
     return strDate;
 }
+
 double ConvertMethods::convertStringToDouble(string str)
 {
     return atof(str.c_str());
 }
 
-double ConvertMethods::replaceCommasIntoDots(double value)
+string ConvertMethods::replaceCommasIntoDots(string str)
 {
-    string str = ConvertMethods::convertIntegerToString(value);
+    string str2 = "";
     for (size_t i = 0; i < str.size(); i++)
     {
-        if (str[i] == ',')
-        {
-            str[i] = '.';
-        }
+        (str[i] == ',') ? str2 += '.' : str2 += str[i];
+
     }
-    return ConvertMethods::convertStringToDouble(str);
+    return str2;
 }
+
+int ConvertMethods::getIntegerYearFromStringDateFormat(string strDateFormat)
+{
+    string strDataYear = "";
+
+    for (int i = 0; i < 4; i++)
+    {
+        strDataYear.push_back(strDateFormat[i]);
+
+    }
+    return convertStringIntoInt(strDataYear);
+}
+
+int ConvertMethods::getIntegerMonthFromStringDateFormat(string strDateFormat)
+{
+    string strDataMonth = "";
+
+    for (int i = 5; i < 7; i++)
+    {
+        strDataMonth.push_back(strDateFormat[i]);
+
+    }
+    return convertStringIntoInt(strDataMonth);
+}
+
+int ConvertMethods::getIntegerDayFromStringDateFormat(string strDateFormat)
+{
+    string strDataDays = "";
+
+    for (int i = 8; i < 10; i++)
+    {
+        strDataDays.push_back(strDateFormat[i]);
+
+    }
+    return convertStringIntoInt(strDataDays);
+}
+

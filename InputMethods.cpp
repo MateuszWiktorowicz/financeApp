@@ -42,3 +42,20 @@ int InputMethods::readNumber()
     }
     return num;
 }
+
+double InputMethods::readDouble()
+{
+    string input = "";
+    double num = 0;
+
+    while (true)
+    {
+        getline(cin, input);
+        input = ConvertMethods::replaceCommasIntoDots(input);
+        stringstream myStream(input);
+        if (myStream >> num)
+            break;
+        cout << "To nie jest liczba. Wpisz ponownie. " << endl;
+    }
+    return num;
+}
