@@ -7,9 +7,12 @@ using namespace std;
 
 int main()
 {
-AccountManager accountManager("incomes.xml", 1);
+AccountManager accountManager(1, "incomes.xml", "expenses.xml");
 
 accountManager.addIncome();
+
+
+accountManager.showBalanceCurrentMonth();
 
 
 

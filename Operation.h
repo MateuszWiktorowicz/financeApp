@@ -22,7 +22,7 @@ public:
 
     int getOperationId();
     int getUserId();
-    vector <int> getDate();
+    vector <int> getDate() const;
     string getItem();
     double getAmount();
 };

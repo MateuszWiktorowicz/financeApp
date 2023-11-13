@@ -10,11 +10,11 @@
 
 using namespace std;
 
-class FileWithIncomes : public FileWithOperations
+class FileWithExpenses : public FileWithOperations
 
 {
 public:
-    FileWithIncomes(string fileName) : FileWithOperations(fileName) {};
+    FileWithExpenses(string fileName) : FileWithOperations(fileName) {};
    void appendOperationToXmlFile(Operation operation);
 
 

@@ -1,3 +1,6 @@
+#ifndef FILEWITHOPERATIONS_H
+#define FILEWITHOPERATIONS_H
+
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -8,14 +11,17 @@
 
 using namespace std;
 
-class FileWithIncomes : public XmlFile
+class FileWithOperations : public XmlFile
 {
 
     int operationId;
 
 public:
-    FileWithIncomes(string fileName) : XmlFile(fileName) {};
+    FileWithOperations(string fileName) : XmlFile(fileName) {};
     virtual void appendOperationToXmlFile(Operation operation) = 0;
 
 
 };
+
+
+#endif
