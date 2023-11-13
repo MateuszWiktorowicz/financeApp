@@ -63,3 +63,8 @@ void AccountManager::addExpense()
     operations.push_back(operation);
     fileWithExpenses.appendOperationToXmlFile(operation);
 }
+
+bool AccountManager::compareDateOfOperationAscending(Operation &operation1, Operation &operation2)
+{
+   return operation1.getDate() < operation2.getDate();
+}

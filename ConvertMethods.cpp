@@ -52,37 +52,76 @@ int ConvertMethods::convertStringIntoInt(string num)
     return intNumber;
 }
 
+vector <int> ConvertMethods::insertSingleDigitsFromTheNumberToVector(int num)
+{
+    vector <int> numbers = {};
+    while (num > 0)
+    {
+        numbers.insert(numbers.begin(), num % 10);
+        num /= 10;
+    }
+    return numbers;
+}
 vector <int> ConvertMethods::getCurrentDate()
 {
-    vector <int> date;
+    int year, month, day;
+    vector <int> date = {};
+    vector <int> result = {};
     time_t now = time(0);
     tm* currentDate = localtime(&now);
 
 
-    date.push_back(currentDate -> tm_year + 1900);
+    year = currentDate -> tm_year + 1900;
+    result = insertSingleDigitsFromTheNumberToVector(year);
+    date.insert(date.end(), result.begin(), result.end());
 
     if ((currentDate -> tm_mon + 1) < 10)
     {
         date.push_back(0);
     }
-    date.push_back(currentDate -> tm_mon + 1);
+    month = currentDate -> tm_mon + 1;
+    result = insertSingleDigitsFromTheNumberToVector(month);
+    date.insert(date.end(), result.begin(), result.end());
 
     if ((currentDate -> tm_mday) < 10)
     {
         date.push_back(0);
     }
-    date.push_back(currentDate -> tm_mday);
+    day = currentDate -> tm_mday;
+    result = insertSingleDigitsFromTheNumberToVector(day);
+    date.insert(date.end(), result.begin(), result.end());
+
 
     return date;
 }
 
 vector <int> ConvertMethods::convertStringDateFormatToIntVector(string strDateFormat)
 {
-    vector <int> intDateVector;
+    vector <int> intDateVector = {};
+    vector <int> result = {};
+    int year, month, day;
 
-    intDateVector.push_back(getIntegerYearFromStringDateFormat(strDateFormat));
-    intDateVector.push_back(getIntegerMonthFromStringDateFormat(strDateFormat));
-    intDateVector.push_back(getIntegerDayFromStringDateFormat(strDateFormat));
+    year = getIntegerYearFromStringDateFormat(strDateFormat);
+    result = insertSingleDigitsFromTheNumberToVector(year);
+    intDateVector.insert(intDateVector.end(), result.begin(), result.end());
+
+
+    month = getIntegerMonthFromStringDateFormat(strDateFormat);
+    result = insertSingleDigitsFromTheNumberToVector(month);
+    if (month < 10)
+    {
+        intDateVector.push_back(0);
+    }
+    intDateVector.insert(intDateVector.end(), result.begin(), result.end());
+
+
+    day = getIntegerDayFromStringDateFormat(strDateFormat);
+    result = insertSingleDigitsFromTheNumberToVector(day);
+    if (day < 10)
+    {
+        intDateVector.push_back(0);
+    }
+    intDateVector.insert(intDateVector.end(), result.begin(), result.end());
 
     return intDateVector;
 }
@@ -118,7 +157,7 @@ string ConvertMethods::convertVectorDateIntoStringFormat(vector <int> date)
     for (size_t i = 0; i < date.size(); i++)
     {
 
-        if (i == 1 || i == 2)
+        if (i == 4 || i == 6)
         {
             strDate += "-";
         }

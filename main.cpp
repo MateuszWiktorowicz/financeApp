@@ -9,7 +9,7 @@ int main()
 {
 AccountManager accountManager(1, "incomes.xml", "expenses.xml");
 
-accountManager.addExpense();
+accountManager.addIncome();
 
 
 

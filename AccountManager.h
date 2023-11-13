@@ -15,13 +15,16 @@ class AccountManager
     vector <Operation> operations;
     FileWithIncomes fileWithIncomes;
     FileWithExpenses fileWithExpenses;
+    bool compareDateOfOperationAscending(Operation &operation1, Operation &operation2);
 
 public:
     AccountManager(int idLoggedInUser, string nameOfFileIncomes, string nameOfFileExpenses)
     : ID_LOGGED_IN_USER(idLoggedInUser), fileWithIncomes(nameOfFileIncomes), fileWithExpenses(nameOfFileExpenses)
     {
     };
+
     void addIncome();
     void addExpense();
+
 
 };

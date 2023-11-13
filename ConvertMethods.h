@@ -18,6 +18,7 @@ class ConvertMethods
     static string enterDate();
 
 public:
+    static vector <int> insertSingleDigitsFromTheNumberToVector(int num);
     static vector <int> convertStringDateFormatToIntVector(string strDateFormat);
     static string convertIntegerToString(int num);
     static string uppercaseFirstLetterLowercaseElseLetters(string text);
