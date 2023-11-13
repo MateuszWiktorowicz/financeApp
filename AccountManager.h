@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 #include "InputMethods.h"
 #include "ConvertMethods.h"
@@ -22,7 +23,7 @@ public:
     : ID_LOGGED_IN_USER(idLoggedInUser), fileWithIncomes(nameOfFileIncomes), fileWithExpenses(nameOfFileExpenses)
     {
     };
-
+    void showBalanceAccountFromPeriod(vector <int> date1, vector <int> date2);
     void addIncome();
     void addExpense();
 

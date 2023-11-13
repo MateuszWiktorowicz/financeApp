@@ -29,7 +29,7 @@ int Operation::getUserId()
 {
     return userId;
 }
-vector <int> Operation::getDate()
+vector <int> Operation::getDate()const
 {
     return date;
 }
