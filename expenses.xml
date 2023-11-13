@@ -34,4 +34,11 @@
 <item>paliwo</item>
 <amount>30</amount>
 </Expense>
+<Expense>
+<operationId>1</operationId>
+<userId>1</userId>
+<date>2023-11-09</date>
+<item>paliwo</item>
+<amount>50</amount>
+</Expense>
 </Expenses>
