@@ -42,6 +42,7 @@ User UserManager::insertNewUser()
     cout << "Wprowadz nazwisko" << endl;
     user.setSurname(InputMethods::readLine());
 
+    fileWithUsers.appendUserToXmlFile(user);
     return user;
 
 }
@@ -125,3 +126,7 @@ int UserManager::getLoggedInUserId()
     return loggedInUserId;
 }
 
+bool UserManager::isUserLoggedIn()
+{
+    return loggedInUserId > 0;
+}

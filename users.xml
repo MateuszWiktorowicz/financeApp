@@ -13,4 +13,11 @@
 <name>mateusz1</name>
 <surname>wiktoroiwcz1</surname>
 </User>
+<User>
+<id>3</id>
+<login>ala</login>
+<password>bala</password>
+<name>alicja</name>
+<surname>perkowska</surname>
+</User>
 </Users>

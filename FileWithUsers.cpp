@@ -3,7 +3,7 @@
 void FileWithUsers::appendUserToXmlFile(User user)
 {
     CMarkup usersFile;
-    bool fileOpened = usersFile.Load("users.xml");
+    bool fileOpened = usersFile.Load(XmlFile::getFileName());
 
     fileOpened ? usersFile.FindElem() : usersFile.AddElem("Users");
 
@@ -15,7 +15,7 @@ void FileWithUsers::appendUserToXmlFile(User user)
     usersFile.AddElem("password", user.getPassword());
     usersFile.AddElem("name", user.getName());
     usersFile.AddElem("surname", user.getSurname());
-    usersFile.Save("users.xml");
+    usersFile.Save(XmlFile::getFileName());
 }
 
 vector <User> FileWithUsers::loadUsersFromFile()
@@ -25,7 +25,7 @@ vector <User> FileWithUsers::loadUsersFromFile()
     vector <User> users;
     CMarkup usersToLoad;
 
-    if (usersToLoad.Load("users.xml"))
+    if (usersToLoad.Load(XmlFile::getFileName()))
     {
         usersToLoad.FindElem();
         usersToLoad.IntoElem();
@@ -58,7 +58,7 @@ vector <User> FileWithUsers::loadUsersFromFile()
 
 void FileWithUsers::changeUserPasswordInFile(vector <User> users)
 {
-    remove("users.xml");
+    remove(XmlFile::getFileName().c_str());
     for (auto user : users)
     {
         appendUserToXmlFile(user);

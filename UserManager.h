@@ -16,8 +16,6 @@ class UserManager
 
     User insertNewUser();
     bool isLoginExist(string log);
-
-
 public:
     UserManager(string fileName) : fileWithUsers(fileName)
     {
@@ -30,6 +28,7 @@ public:
     void changePassword();
     void logout();
     int getLoggedInUserId();
+    bool isUserLoggedIn();
 };
 
 
