@@ -14,6 +14,7 @@ class FileWithExpenses : public FileWithOperations
 
 {
 public:
+    vector <Operation> loadExpensesFromFile();
     FileWithExpenses(string fileName) : FileWithOperations(fileName) {};
    void appendOperationToXmlFile(Operation operation);
 

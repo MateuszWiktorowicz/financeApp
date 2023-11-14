@@ -25,11 +25,15 @@ public:
     AccountManager(int idLoggedInUser, string nameOfFileIncomes, string nameOfFileExpenses)
     : ID_LOGGED_IN_USER(idLoggedInUser), fileWithIncomes(nameOfFileIncomes), fileWithExpenses(nameOfFileExpenses)
     {
+        operations = fileWithIncomes.loadIncomesFromFile();
+        vector <Operation> temp = fileWithExpenses.loadExpensesFromFile();
+        operations.insert(operations.end(), temp.begin(), temp.end());
     };
     void showBalanceAccountFromPeriod(vector <int> date1, vector <int> date2);
     void addIncome();
     void addExpense();
     void showBalanceCurrentMonth();
+    void showBalanceLastMonth();
 
 
 };

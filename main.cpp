@@ -9,10 +9,8 @@ int main()
 {
 AccountManager accountManager(1, "incomes.xml", "expenses.xml");
 
-accountManager.addIncome();
 
-
-accountManager.showBalanceCurrentMonth();
+accountManager.showBalanceLastMonth();
 
 
 

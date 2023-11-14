@@ -21,7 +21,7 @@ public:
     static bool isDateCorrect(string dataToCheck);
     static bool isDateFormatCorrect(string dataToCheck);
     static bool isDateYearsMonthsDaysCorrect(string dataToCheck);
-    static int countMaxDayInMonth(int year, int month, int day);
+    static int countMaxDayInMonth(int year, int month);
 
 };
 

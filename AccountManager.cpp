@@ -125,6 +125,53 @@ void AccountManager::showBalanceCurrentMonth()
     showBalanceAccountFromPeriod(beginOfCurrentMonth, endOfCurrentMonth);
 }
 
+void AccountManager::showBalanceLastMonth()
+{
+    vector <int> currentDate = ConvertMethods::getCurrentDate();
+    vector <int> beginOfLastMonthDate = {};
+    vector <int> endOfLastMonthDate = {};
+    vector <int> temp = {};
+
+    string strDateFormat = ConvertMethods::convertVectorDateIntoStringFormat(currentDate);
+
+    int year = ConvertMethods::getIntegerYearFromStringDateFormat(strDateFormat);
+    int month = ConvertMethods::getIntegerMonthFromStringDateFormat(strDateFormat) - 1;
+
+    if (month == 0)
+    {
+        year -= 1;
+        month = 12;
+    }
+
+    temp = ConvertMethods::insertSingleDigitsFromTheNumberToVector(year);
+    beginOfLastMonthDate.insert(beginOfLastMonthDate.end(), temp.begin(), temp.end());
+    endOfLastMonthDate.insert(endOfLastMonthDate.end(), temp.begin(), temp.end());
+
+    if (month < 10)
+    {
+        beginOfLastMonthDate.push_back(0);
+        beginOfLastMonthDate.push_back(month);
+        endOfLastMonthDate.push_back(0);
+        endOfLastMonthDate.push_back(month);
+
+    }
+    else
+    {
+        temp = ConvertMethods::insertSingleDigitsFromTheNumberToVector(month);
+        beginOfLastMonthDate.insert(beginOfLastMonthDate.end(), temp.begin(), temp.end());
+        endOfLastMonthDate.insert(endOfLastMonthDate.end(), temp.begin(), temp.end());
+    }
+
+    beginOfLastMonthDate.push_back(0);
+    beginOfLastMonthDate.push_back(1);
+
+    int lastDay = ValidationMethods::countMaxDayInMonth(year, month);
+    temp = ConvertMethods::insertSingleDigitsFromTheNumberToVector(lastDay);
+    endOfLastMonthDate.insert(endOfLastMonthDate.end(), temp.begin(), temp.end());
+
+    showBalanceAccountFromPeriod(beginOfLastMonthDate, endOfLastMonthDate);
+
+}
 vector <int> AccountManager::setFirsDayCurrentMonth()
 {
     vector <int> currentDate = ConvertMethods::getCurrentDate();
@@ -149,8 +196,7 @@ vector <int> AccountManager::setLastDayCurrentMonth()
 
     int year = ConvertMethods::getIntegerYearFromStringDateFormat(strFormatDate);
     int month = ConvertMethods::getIntegerMonthFromStringDateFormat(strFormatDate);
-    int day = ConvertMethods::getIntegerDayFromStringDateFormat(strFormatDate);
-    int lastDayOfCurrentMonth = ValidationMethods::countMaxDayInMonth(year, month, day);
+    int lastDayOfCurrentMonth = ValidationMethods::countMaxDayInMonth(year, month);
 
 
     for (size_t i = 0; i < (currentDate.size() - 2); i++)
