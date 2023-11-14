@@ -5,6 +5,8 @@
 *depend
 obj/Debug/main.o
 obj/Debug/InputMethods.o
+obj/Debug/User.o
+obj/Debug/
 *xml
 *layout
 
