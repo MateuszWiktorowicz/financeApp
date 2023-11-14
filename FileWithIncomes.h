@@ -13,7 +13,9 @@ using namespace std;
 class FileWithIncomes : public FileWithOperations
 
 {
+    const int operationId = 1;
 public:
+    vector <Operation> loadIncomesFromFile();
     FileWithIncomes(string fileName) : FileWithOperations(fileName) {};
    void appendOperationToXmlFile(Operation operation);
 

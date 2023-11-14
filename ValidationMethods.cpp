@@ -61,7 +61,7 @@ bool ValidationMethods::isMonthCorrect(int monthToCheck)
 
 bool ValidationMethods::isDayCorrect(int year, int month, int day)
 {
-    int maxDay = countMaxDayInMonth(year, month, day);
+    int maxDay = countMaxDayInMonth(year, month);
     return day <= maxDay && day > 0;
 
 }
@@ -94,18 +94,17 @@ bool ValidationMethods::isNotLaterThanLastDayOfCurrentMonth(string dataToCheck)
 int ValidationMethods::getCurrentDateLastDayOfMonth(vector <int> currentDate)
 {
     string currentDateInStringFormat = "";
-    int currentYear, currentMonth, currentDay;
+    int currentYear, currentMonth;
 
     currentDateInStringFormat = ConvertMethods::convertVectorDateIntoStringFormat(currentDate);
 
     currentYear = ConvertMethods::getIntegerYearFromStringDateFormat(currentDateInStringFormat);
     currentMonth = ConvertMethods::getIntegerMonthFromStringDateFormat(currentDateInStringFormat);
-    currentDay = ConvertMethods::getIntegerDayFromStringDateFormat(currentDateInStringFormat);
 
-    return countMaxDayInMonth(currentYear, currentMonth, currentDay);
+    return countMaxDayInMonth(currentYear, currentMonth);
 }
 
-int ValidationMethods::countMaxDayInMonth(int year, int month, int day)
+int ValidationMethods::countMaxDayInMonth(int year, int month)
 {
     if((month==2) && ((year%400==0) || ((year%100!=0)&&(year%4==0)))){
         return 29;
