@@ -20,8 +20,10 @@ class AccountManager
 
     vector <int> setFirsDayCurrentMonth();
     vector <int> setLastDayCurrentMonth();
+    Operation addAccountOperation(int operationId);
     bool isDateRangeCorrect(vector<Operation>::iterator itr, vector <int> date1, vector <int> date2);
     void showBalanceAccountFromPeriod(vector <int> date1, vector <int> date2);
+    double coutOperationsInDataRangeAndCountTotal(vector <int> date1, vector <int> date2, int operationId);
 public:
     AccountManager(int idLoggedInUser, string nameOfFileWithIncomes, string nameOfFileWithExpenses)
     : ID_LOGGED_IN_USER(idLoggedInUser), fileWithIncomes(nameOfFileWithIncomes), fileWithExpenses(nameOfFileWithExpenses)

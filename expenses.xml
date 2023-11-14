@@ -13,4 +13,11 @@
 <item>Paliwo</item>
 <amount>12.3</amount>
 </Expense>
+<Expense>
+<operationId>2</operationId>
+<userId>1</userId>
+<date>2003-11-11</date>
+<item>Paliwo</item>
+<amount>900</amount>
+</Expense>
 </Expenses>

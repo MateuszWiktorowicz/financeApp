@@ -1,10 +1,10 @@
 #include "AccountManager.h"
 
-void AccountManager::addIncome()
+Operation AccountManager::addAccountOperation(int operationId)
 {
     Operation operation;
     system("cls");
-    cout << "Z JAKA DATA DODAC PRZYCHOD" << endl;
+    cout << "DATA OPERACJI BANKOWEJ:" << endl;
     cout << "1. DZISIEJSZA" << endl;
     cout << "2. WYBIERZ DATE" << endl;
 
@@ -23,12 +23,22 @@ void AccountManager::addIncome()
     operation.setOperationId(1);
     operation.setUserId(ID_LOGGED_IN_USER);
 
-    cout << "Wpisz rodzaj przychodu" << endl;
+    cout << "Kategoria Operacji: (np. Praca / Dom / Paliwo" << endl;
     string kindOfIncome = InputMethods::readLine();
     operation.setItem(kindOfIncome);
 
-    cout << "Wpisz kwote przychodu" << endl;
+    cout << "WPISZ KWOTE: " << endl;
     operation.setAmount(InputMethods::readDouble());
+
+    return operation;
+}
+
+void AccountManager::addIncome()
+{
+    const int idOfIncomeOperation = 1;
+    Operation operation;
+
+    operation = addAccountOperation(idOfIncomeOperation);
 
     operations.push_back(operation);
     fileWithIncomes.appendOperationToXmlFile(operation);
@@ -39,38 +49,14 @@ void AccountManager::addIncome()
 
 void AccountManager::addExpense()
 {
-    system("cls");
+    const int idOfExpenseOperation = 2;
     Operation operation;
 
-    cout << "Z JAKA DATA DODAC WYDATEK" << endl;
-    cout << "1. DZISIEJSZA" << endl;
-    cout << "2. WYBIERZ DATE" << endl;
-
-    char choice = InputMethods::readSign();
-
-    switch(choice)
-    {
-    case '1' :
-        operation.setDate(ConvertMethods::getCurrentDate());
-        break;
-
-    case '2' :
-        operation.setDate(ConvertMethods::getChosenDate());
-        break;
-    }
-
-    operation.setOperationId(2);
-    operation.setUserId(ID_LOGGED_IN_USER);
-
-    cout << "Wpisz rodzaj wydatku" << endl;
-    string kindOfIncome = InputMethods::readLine();
-    operation.setItem(kindOfIncome);
-
-    cout << "Wpisz kwote wydatku" << endl;
-    operation.setAmount(InputMethods::readDouble());
+    operation = addAccountOperation(idOfExpenseOperation);
 
     operations.push_back(operation);
     fileWithExpenses.appendOperationToXmlFile(operation);
+
     cout << "WYDATEK DODANY" << endl;
     system("pause");
 }
@@ -81,43 +67,41 @@ void AccountManager::showBalanceAccountFromPeriod(vector <int> date1, vector <in
     double incomes = 0;
     double expenses = 0;
     double total = 0;
+
     sort(operations.begin(), operations.end(), [] (const Operation& op1, const Operation& op2)
-         {
-             return op1.getDate() > op2.getDate();
-         });
-
-
-    cout << "PRZYCHODY" << endl;
-    for (vector <Operation>::iterator itr = operations.begin(); itr < operations.end(); itr++)
     {
-        if ((itr -> getOperationId()  == 1) && (isDateRangeCorrect(itr, date1, date2)))
-        {
-            cout << "Kwota: " << itr -> getAmount() << " PLN" << endl;
-            cout << "Data: " << ConvertMethods::convertVectorDateIntoStringFormat(itr -> getDate()) << endl;
-            cout << "Kategoria: " << itr -> getItem() << endl << endl;
-            incomes += itr -> getAmount();
+        return op1.getDate() > op2.getDate();
+    });
 
-        }
-    }
-    cout << "WYDATKI" << endl;
 
-    for (vector <Operation>::iterator itr = operations.begin(); itr < operations.end(); itr++)
-    {
-        if ((itr -> getOperationId()  == 2) && (isDateRangeCorrect(itr, date1, date2)))
-        {
-            cout << "Kwota: " << itr -> getAmount() << " PLN" << endl;
-            cout << "Data: " << ConvertMethods::convertVectorDateIntoStringFormat(itr -> getDate()) << endl;
-            cout << "Kategoria: " << itr -> getItem() << endl << endl;
-            expenses += itr -> getAmount();
+    cout << "PRZYCHODY" << endl << endl;
+    incomes = coutOperationsInDataRangeAndCountTotal(date1, date2, 1);
 
-        }
-    }
+    cout << "WYDATKI" << endl << endl;
+    expenses = coutOperationsInDataRangeAndCountTotal(date1, date2, 2);
+
     total = incomes - expenses;
     cout << "PRZYCHODY: " << incomes << endl;
     cout << "WYDATKI: " << expenses << endl;
     cout << "SALDO: " << total << endl;
     system("pause");
 
+}
+
+double AccountManager::coutOperationsInDataRangeAndCountTotal(vector <int> date1, vector <int> date2, int operationId)
+{
+    double total = 0;
+    for (vector <Operation>::iterator itr = operations.begin(); itr < operations.end(); itr++)
+    {
+        if ((itr -> getOperationId()  == operationId) && (isDateRangeCorrect(itr, date1, date2)))
+        {
+            cout << "Kwota: " << itr -> getAmount() << " PLN" << endl;
+            cout << "Data: " << ConvertMethods::convertVectorDateIntoStringFormat(itr -> getDate()) << endl;
+            cout << "Kategoria: " << itr -> getItem() << endl << endl;
+            total += itr -> getAmount();
+        }
+    }
+    return total;
 }
 
 bool AccountManager::isDateRangeCorrect(vector<Operation>::iterator itr, vector <int> date1, vector <int> date2)

@@ -20,4 +20,11 @@
 <item>marketing afiliacyjny</item>
 <amount>200.12</amount>
 </Income>
+<Income>
+<operationId>1</operationId>
+<userId>1</userId>
+<date>2023-11-14</date>
+<item>Praca</item>
+<amount>1000</amount>
+</Income>
 </Incomes>
