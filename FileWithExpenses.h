@@ -13,8 +13,9 @@ using namespace std;
 class FileWithExpenses : public FileWithOperations
 
 {
+    const int operationId = 2;
 public:
-    vector <Operation> loadExpensesFromFile();
+    vector <Operation> loadOperationsFromFile(int loggedInUser);
     FileWithExpenses(string fileName) : FileWithOperations(fileName) {};
    void appendOperationToXmlFile(Operation operation);
 

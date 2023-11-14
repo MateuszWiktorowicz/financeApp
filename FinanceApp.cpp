@@ -13,12 +13,23 @@ void FinanceApp::loginUser()
     {
         accountManager = new AccountManager(userManager.getLoggedInUserId(), NAME_OF_FILE_WITH_INCOMES, NAME_OF_FILE_WITH_EXPENSES);
     }
-
 }
 
 void FinanceApp::changePassword()
 {
     userManager.changePassword();
+}
+
+bool FinanceApp::isUserLoggedIn()
+{
+    return userManager.isUserLoggedIn();
+}
+
+void FinanceApp::logout()
+{
+    userManager.logout();
+    delete accountManager;
+    accountManager = NULL;
 }
 
 void FinanceApp::addIncome()
@@ -53,23 +64,22 @@ void FinanceApp::showBalanceLastMonth()
     }
 }
 
-bool FinanceApp::isUserLoggedIn()
+void FinanceApp::showBalanceFrom()
 {
-    return userManager.isUserLoggedIn();
-}
-
-void FinanceApp::logout()
-{
-    userManager.logout();
-    delete accountManager;
-    accountManager = NULL;
+    if (userManager.isUserLoggedIn())
+    {
+        accountManager -> showBalanceFrom();
+    }
 }
 
 char FinanceApp::choiceOptionFromMainMenu()
 {
     return menuManager.choiceOptionFromMainMenu();
 }
+
 char FinanceApp::choiceOptionFromUserMenu()
 {
     return menuManager.choiceOptionFromUserMenu();
 }
+
+

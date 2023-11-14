@@ -13,12 +13,11 @@ using namespace std;
 
 class FileWithOperations : public XmlFile
 {
-
     int operationId;
-
 public:
     FileWithOperations(string fileName) : XmlFile(fileName) {};
     virtual void appendOperationToXmlFile(Operation operation) = 0;
+    virtual vector <Operation> loadOperationsFromFile(int loggedInUser) = 0;
 
 
 };

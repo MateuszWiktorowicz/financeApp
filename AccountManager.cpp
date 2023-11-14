@@ -3,7 +3,7 @@
 void AccountManager::addIncome()
 {
     Operation operation;
-
+    system("cls");
     cout << "Z JAKA DATA DODAC PRZYCHOD" << endl;
     cout << "1. DZISIEJSZA" << endl;
     cout << "2. WYBIERZ DATE" << endl;
@@ -32,10 +32,14 @@ void AccountManager::addIncome()
 
     operations.push_back(operation);
     fileWithIncomes.appendOperationToXmlFile(operation);
+
+    cout << "PRZYCHOD DODANY" << endl;
+    system("pause");
 }
 
 void AccountManager::addExpense()
 {
+    system("cls");
     Operation operation;
 
     cout << "Z JAKA DATA DODAC WYDATEK" << endl;
@@ -67,10 +71,13 @@ void AccountManager::addExpense()
 
     operations.push_back(operation);
     fileWithExpenses.appendOperationToXmlFile(operation);
+    cout << "WYDATEK DODANY" << endl;
+    system("pause");
 }
 
 void AccountManager::showBalanceAccountFromPeriod(vector <int> date1, vector <int> date2)
 {
+    system("cls");
     double incomes = 0;
     double expenses = 0;
     double total = 0;
@@ -85,9 +92,9 @@ void AccountManager::showBalanceAccountFromPeriod(vector <int> date1, vector <in
     {
         if ((itr -> getOperationId()  == 1) && (isDateRangeCorrect(itr, date1, date2)))
         {
-            cout << itr -> getAmount() << endl;
-            cout << ConvertMethods::convertVectorDateIntoStringFormat(itr -> getDate()) << endl;
-            cout << itr -> getItem() << endl;
+            cout << "Kwota: " << itr -> getAmount() << " PLN" << endl;
+            cout << "Data: " << ConvertMethods::convertVectorDateIntoStringFormat(itr -> getDate()) << endl;
+            cout << "Kategoria: " << itr -> getItem() << endl << endl;
             incomes += itr -> getAmount();
 
         }
@@ -98,9 +105,9 @@ void AccountManager::showBalanceAccountFromPeriod(vector <int> date1, vector <in
     {
         if ((itr -> getOperationId()  == 2) && (isDateRangeCorrect(itr, date1, date2)))
         {
-            cout << itr -> getAmount() << endl;
-            cout << ConvertMethods::convertVectorDateIntoStringFormat(itr -> getDate()) << endl;
-            cout << itr -> getItem() << endl;
+            cout << "Kwota: " << itr -> getAmount() << " PLN" << endl;
+            cout << "Data: " << ConvertMethods::convertVectorDateIntoStringFormat(itr -> getDate()) << endl;
+            cout << "Kategoria: " << itr -> getItem() << endl << endl;
             expenses += itr -> getAmount();
 
         }
@@ -109,6 +116,7 @@ void AccountManager::showBalanceAccountFromPeriod(vector <int> date1, vector <in
     cout << "PRZYCHODY: " << incomes << endl;
     cout << "WYDATKI: " << expenses << endl;
     cout << "SALDO: " << total << endl;
+    system("pause");
 
 }
 
@@ -119,14 +127,17 @@ bool AccountManager::isDateRangeCorrect(vector<Operation>::iterator itr, vector 
 
 void AccountManager::showBalanceCurrentMonth()
 {
+    system("cls");
     vector <int> beginOfCurrentMonth = setFirsDayCurrentMonth();
     vector <int> endOfCurrentMonth = setLastDayCurrentMonth();
 
     showBalanceAccountFromPeriod(beginOfCurrentMonth, endOfCurrentMonth);
+
 }
 
 void AccountManager::showBalanceLastMonth()
 {
+    system("cls");
     vector <int> currentDate = ConvertMethods::getCurrentDate();
     vector <int> beginOfLastMonthDate = {};
     vector <int> endOfLastMonthDate = {};
@@ -208,4 +219,17 @@ vector <int> AccountManager::setLastDayCurrentMonth()
     newVector.insert(newVector.end(), temporary.begin(), temporary.end());
 
     return newVector;
+}
+
+void AccountManager::showBalanceFrom()
+{
+    system("cls");
+    cout << "PODAJ PRZEDZIAL DAT Z KTOREGO MA ZOSTAC WYSWIETLONY BILANS" << endl;
+    cout << "PODAJ POCZATEK PRZEDZIALU" << endl;
+    vector <int> date1 = ConvertMethods::getChosenDate();
+
+    cout << "PODAJ KONIEC PRZEDZIALU" << endl;
+    vector <int> date2 = ConvertMethods::getChosenDate();
+
+    showBalanceAccountFromPeriod(date1, date2);
 }

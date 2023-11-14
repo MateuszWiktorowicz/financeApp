@@ -15,7 +15,7 @@ class FileWithIncomes : public FileWithOperations
 {
     const int operationId = 1;
 public:
-    vector <Operation> loadIncomesFromFile();
+    vector <Operation> loadOperationsFromFile(int loggedInUser);
     FileWithIncomes(string fileName) : FileWithOperations(fileName) {};
    void appendOperationToXmlFile(Operation operation);
 

@@ -50,7 +50,7 @@ int main()
                 financeApp.showBalanceLastMonth();
                 break;
             case '5':
-               // financeApp.deleteAddressee();
+                financeApp.showBalanceFrom();
                 break;
             case '7':
                 financeApp.changePassword();
