@@ -31,15 +31,7 @@ bool ValidationMethods::isDateFormatCorrect(string dataToCheck)
 
 bool ValidationMethods::isDateYearsMonthsDaysCorrect(vector <int> intVecDataToCheck)
 {
-    if (isYearCorrect(intVecDataToCheck) && isMonthCorrect(intVecDataToCheck) && isDayCorrect(intVecDataToCheck) && isNotLaterThanLastDayOfCurrentMonth(intVecDataToCheck))
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-
+    return isYearCorrect(intVecDataToCheck) && isMonthCorrect(intVecDataToCheck) && isDayCorrect(intVecDataToCheck) && isNotLaterThanLastDayOfCurrentMonth(intVecDataToCheck);
 }
 
 bool ValidationMethods::isYearCorrect(vector <int> intVecDataToCheck)

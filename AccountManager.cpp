@@ -73,7 +73,7 @@ void AccountManager::showBalanceAccountFromPeriod(vector <int> date1, vector <in
 
     sort(operations.begin(), operations.end(), [] (const Operation& op1, const Operation& op2)
     {
-        return op1.getDate() > op2.getDate();
+        return op1.getDate() < op2.getDate();
     });
 
 

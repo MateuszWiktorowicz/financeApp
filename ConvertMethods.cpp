@@ -121,12 +121,12 @@ string ConvertMethods::enterDate()
 {
     string date;
     cout << "WPROWADZ DATE W FORMACIE YYYY-MM-DD" << endl;
-    cout << "DATA NIE WCZESNIEJSZA NIZ 2000-01-01" << endl;
+    cout << "DATA MUSI SIE MIESCIC W PRZEDZIALE: 2000-01-01 / " << convertVectorDateIntoStringFormat(setLastDayMonth(getCurrentDate())) << endl;
 
     do
     {
         date = InputMethods::readLine();
-        cout << (ValidationMethods::isDateCorrect(date) ? "WPROWADZONO POPRAWNA DATE" : "DATA W NIEPOPRWANYM FORMACIE. WPROWADZ JESZCZE RAZ") << endl;
+        cout << (ValidationMethods::isDateCorrect(date) ? "WPROWADZONO POPRAWNA DATE" : "DATA NIEPOPRAWNA. WPROWADZ PONOWNIE") << endl;
     }
     while (!ValidationMethods::isDateCorrect(date));
 
