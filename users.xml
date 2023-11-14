@@ -13,4 +13,11 @@
 <name>Amelia</name>
 <surname>Pekala</surname>
 </User>
+<User>
+<id>3</id>
+<login>woj</login>
+<password>paw</password>
+<name>Wojtek</name>
+<surname>Pawlik</surname>
+</User>
 </Users>

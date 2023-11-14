@@ -98,31 +98,14 @@ vector <int> ConvertMethods::getCurrentDate()
 vector <int> ConvertMethods::convertStringDateFormatToIntVector(string strDateFormat)
 {
     vector <int> intDateVector = {};
-    vector <int> result = {};
-    int year, month, day;
 
-    year = getIntegerYearFromStringDateFormat(strDateFormat);
-    result = insertSingleDigitsFromTheNumberToVector(year);
-    intDateVector.insert(intDateVector.end(), result.begin(), result.end());
-
-
-    month = getIntegerMonthFromStringDateFormat(strDateFormat);
-    result = insertSingleDigitsFromTheNumberToVector(month);
-    if (month < 10)
+    for (size_t i = 0; i < strDateFormat.size(); i++)
     {
-        intDateVector.push_back(0);
+        if (strDateFormat[i] != '-')
+        {
+            intDateVector.push_back(convertCharToInt(strDateFormat[i]));
+        }
     }
-    intDateVector.insert(intDateVector.end(), result.begin(), result.end());
-
-
-    day = getIntegerDayFromStringDateFormat(strDateFormat);
-    result = insertSingleDigitsFromTheNumberToVector(day);
-    if (day < 10)
-    {
-        intDateVector.push_back(0);
-    }
-    intDateVector.insert(intDateVector.end(), result.begin(), result.end());
-
     return intDateVector;
 }
 
@@ -183,39 +166,81 @@ string ConvertMethods::replaceCommasIntoDots(string str)
     return str2;
 }
 
-int ConvertMethods::getIntegerYearFromStringDateFormat(string strDateFormat)
+int ConvertMethods::getIntegerYearFromDateIntVector(vector <int> dateVector)
 {
-    string strDataYear = "";
-
-    for (int i = 0; i < 4; i++)
-    {
-        strDataYear.push_back(strDateFormat[i]);
-
-    }
-    return convertStringIntoInt(strDataYear);
+    int year = dateVector[0] * 1000 + dateVector[1] * 100 + dateVector[2] * 10 + dateVector[3];
+    return year;
 }
 
-int ConvertMethods::getIntegerMonthFromStringDateFormat(string strDateFormat)
+int ConvertMethods::getIntegerMonthFromDateIntVector(vector <int> dateVector)
 {
-    string strDataMonth = "";
-
-    for (int i = 5; i < 7; i++)
-    {
-        strDataMonth.push_back(strDateFormat[i]);
-
-    }
-    return convertStringIntoInt(strDataMonth);
+    int month = dateVector[4] * 10 + dateVector[5];
+    return month;
 }
 
-int ConvertMethods::getIntegerDayFromStringDateFormat(string strDateFormat)
+int ConvertMethods::getIntegerDayFromDateIntVector(vector <int> dateVector)
 {
-    string strDataDays = "";
-
-    for (int i = 8; i < 10; i++)
-    {
-        strDataDays.push_back(strDateFormat[i]);
-
-    }
-    return convertStringIntoInt(strDataDays);
+    int day = dateVector[6] * 10 + dateVector[7];
+    return day;
 }
 
+vector <int> ConvertMethods::setFirsDayMonth(vector <int> vecToSetUp)
+{
+    vector <int> newVector = {};
+
+    for (size_t i = 0; i < 6; i++)
+    {
+        newVector.push_back(vecToSetUp[i]);
+    }
+    newVector.push_back(0);
+    newVector.push_back(1);
+
+    return newVector;
+}
+
+vector <int> ConvertMethods::setLastDayMonth(vector <int> vecToSetUp)
+{
+    vector <int> newVector = {};
+    vector <int> temporary = {};
+
+    int lastDayOfCurrentMonth = ValidationMethods::countMaxDayInMonth(vecToSetUp);
+
+    for (size_t i = 0; i < 6; i++)
+    {
+        newVector.push_back(vecToSetUp[i]);
+    }
+
+    temporary = ConvertMethods::insertSingleDigitsFromTheNumberToVector(lastDayOfCurrentMonth);
+    newVector.insert(newVector.end(), temporary.begin(), temporary.end());
+
+    return newVector;
+}
+
+vector <int> ConvertMethods::getLastMonthVector()
+{
+    vector <int> currentDate = ConvertMethods::getCurrentDate();
+    vector <int> vec = {};
+    int month = getIntegerMonthFromDateIntVector(currentDate) - 1;
+    int year = getIntegerMonthFromDateIntVector(currentDate);
+
+    if (month == 1)
+    {
+        year -= 1;
+        month = 12;
+    }
+
+    vector <int> temp = ConvertMethods::insertSingleDigitsFromTheNumberToVector(year);
+    vec.insert(vec.end(), temp.begin(), temp.end());
+
+    if (month < 10)
+    {
+        vec.push_back(0);
+        vec.push_back(month);
+    }
+    else
+    {
+        temp = ConvertMethods::insertSingleDigitsFromTheNumberToVector(month);
+        vec.insert(vec.end(), temp.begin(), temp.end());
+    }
+    return vec;
+}

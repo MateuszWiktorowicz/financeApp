@@ -2,7 +2,7 @@
 
 bool ValidationMethods::isDateCorrect(string dataToCheck)
 {
-    return (isDateFormatCorrect(dataToCheck) && isDateYearsMonthsDaysCorrect(dataToCheck));
+    return (isDateFormatCorrect(dataToCheck) && isDateYearsMonthsDaysCorrect(ConvertMethods::convertStringDateFormatToIntVector(dataToCheck)));
 }
 
 
@@ -29,15 +29,9 @@ bool ValidationMethods::isDateFormatCorrect(string dataToCheck)
     return true;
 }
 
-bool ValidationMethods::isDateYearsMonthsDaysCorrect(string dataToCheck)
+bool ValidationMethods::isDateYearsMonthsDaysCorrect(vector <int> intVecDataToCheck)
 {
-    int year, month, day;
-
-    year = ConvertMethods::getIntegerYearFromStringDateFormat(dataToCheck);
-    month = ConvertMethods::getIntegerMonthFromStringDateFormat(dataToCheck);
-    day = ConvertMethods::getIntegerDayFromStringDateFormat(dataToCheck);
-
-    if (isYearCorrect(year) && isMonthCorrect(month) && isDayCorrect(year, month, day) && isNotLaterThanLastDayOfCurrentMonth(dataToCheck))
+    if (isYearCorrect(intVecDataToCheck) && isMonthCorrect(intVecDataToCheck) && isDayCorrect(intVecDataToCheck) && isNotLaterThanLastDayOfCurrentMonth(intVecDataToCheck))
     {
         return true;
     }
@@ -48,64 +42,41 @@ bool ValidationMethods::isDateYearsMonthsDaysCorrect(string dataToCheck)
 
 }
 
-
-bool ValidationMethods::isYearCorrect(int yearToCheck)
+bool ValidationMethods::isYearCorrect(vector <int> intVecDataToCheck)
 {
-    return yearToCheck >= 2000;
+    int year = ConvertMethods::getIntegerYearFromDateIntVector(intVecDataToCheck);
+    return year >= 2000;
 }
 
-bool ValidationMethods::isMonthCorrect(int monthToCheck)
+bool ValidationMethods::isMonthCorrect(vector <int> intVecDataToCheck)
 {
-    return monthToCheck > 0 && monthToCheck < 13;
+    int month = ConvertMethods::getIntegerMonthFromDateIntVector(intVecDataToCheck);
+    return month > 0 && month < 13;
 }
 
-bool ValidationMethods::isDayCorrect(int year, int month, int day)
+bool ValidationMethods::isDayCorrect(vector <int> intVecDataToCheck)
 {
-    int maxDay = countMaxDayInMonth(year, month);
+    int day = ConvertMethods::getIntegerDayFromDateIntVector(intVecDataToCheck);
+
+    int maxDay = countMaxDayInMonth(intVecDataToCheck);
+
     return day <= maxDay && day > 0;
 
 }
 
-bool ValidationMethods::isNotLaterThanLastDayOfCurrentMonth(string dataToCheck)
+bool ValidationMethods::isNotLaterThanLastDayOfCurrentMonth(vector <int> intVecDataToCheck)
 {
-    vector <int> currentDate = ConvertMethods::getCurrentDate();
-    string currentDateInStringFormatWithDashes = ConvertMethods::convertVectorDateIntoStringFormat(currentDate);
+    vector <int> lastDayOfCurrentMonth = ConvertMethods::setLastDayMonth(ConvertMethods::getCurrentDate());
 
-    if ((ConvertMethods::getIntegerYearFromStringDateFormat(dataToCheck) <= ConvertMethods::getIntegerYearFromStringDateFormat(currentDateInStringFormatWithDashes))
-        && (ConvertMethods::getIntegerMonthFromStringDateFormat(dataToCheck) <= ConvertMethods::getIntegerMonthFromStringDateFormat(currentDateInStringFormatWithDashes)))
-    {
-        int maxDay = getCurrentDateLastDayOfMonth(currentDate);
-        int day = ConvertMethods::getIntegerDayFromStringDateFormat(dataToCheck);
-
-        return day <= maxDay;
-    }
-    else if ((ConvertMethods::getIntegerYearFromStringDateFormat(dataToCheck) <= ConvertMethods::getIntegerYearFromStringDateFormat(currentDateInStringFormatWithDashes))
-        && (ConvertMethods::getIntegerMonthFromStringDateFormat(dataToCheck) < ConvertMethods::getIntegerMonthFromStringDateFormat(currentDateInStringFormatWithDashes)))
-        {
-            return true;
-        }
-    else
-    {
-        return false;
-    }
-
+    return intVecDataToCheck <= lastDayOfCurrentMonth;
 }
 
-int ValidationMethods::getCurrentDateLastDayOfMonth(vector <int> currentDate)
+
+int ValidationMethods::countMaxDayInMonth(vector <int> intVecDataToCheck)
 {
-    string currentDateInStringFormat = "";
-    int currentYear, currentMonth;
+    int month = ConvertMethods::getIntegerMonthFromDateIntVector(intVecDataToCheck);
+    int year = ConvertMethods::getIntegerYearFromDateIntVector(intVecDataToCheck);
 
-    currentDateInStringFormat = ConvertMethods::convertVectorDateIntoStringFormat(currentDate);
-
-    currentYear = ConvertMethods::getIntegerYearFromStringDateFormat(currentDateInStringFormat);
-    currentMonth = ConvertMethods::getIntegerMonthFromStringDateFormat(currentDateInStringFormat);
-
-    return countMaxDayInMonth(currentYear, currentMonth);
-}
-
-int ValidationMethods::countMaxDayInMonth(int year, int month)
-{
     if((month==2) && ((year%400==0) || ((year%100!=0)&&(year%4==0)))){
         return 29;
     }
@@ -118,5 +89,9 @@ int ValidationMethods::countMaxDayInMonth(int year, int month)
     else if(month==4 || month==6 || month==9 || month==11){
         return 30;
     }
-    else cout<<"Invalid month";
+    else
+    {
+        cout << "Invalid month";
+    }
+    return 0;
 }

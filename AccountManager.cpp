@@ -20,7 +20,7 @@ Operation AccountManager::addAccountOperation(int operationId)
         operation.setDate(ConvertMethods::getChosenDate());
         break;
     }
-    operation.setOperationId(1);
+    operation.setOperationId(operationId);
     operation.setUserId(ID_LOGGED_IN_USER);
 
     cout << "Kategoria Operacji: (np. Praca / Dom / Paliwo" << endl;
@@ -115,8 +115,8 @@ bool AccountManager::isDateRangeCorrect(vector<Operation>::iterator itr, vector 
 void AccountManager::showBalanceCurrentMonth()
 {
     system("cls");
-    vector <int> beginOfCurrentMonth = setFirsDayMonth(ConvertMethods::getCurrentDate());
-    vector <int> endOfCurrentMonth = setLastDayMonth(ConvertMethods::getCurrentDate());
+    vector <int> beginOfCurrentMonth = ConvertMethods::setFirsDayMonth(ConvertMethods::getCurrentDate());
+    vector <int> endOfCurrentMonth = ConvertMethods::setLastDayMonth(ConvertMethods::getCurrentDate());
 
     showBalanceAccountFromPeriod(beginOfCurrentMonth, endOfCurrentMonth);
 
@@ -126,8 +126,8 @@ void AccountManager::showBalanceLastMonth()
 {
     system("cls");
 
-    vector <int> beginOfLastMonthDate = setFirsDayMonth(getLastMonthVector());
-    vector <int> endOfLastMonthDate = setLastDayMonth(getLastMonthVector());
+    vector <int> beginOfLastMonthDate = ConvertMethods::setFirsDayMonth(ConvertMethods::getLastMonthVector());
+    vector <int> endOfLastMonthDate = ConvertMethods::setLastDayMonth(ConvertMethods::getLastMonthVector());
 
     showBalanceAccountFromPeriod(beginOfLastMonthDate, endOfLastMonthDate);
 }
@@ -146,67 +146,3 @@ void AccountManager::showBalanceFrom()
 }
 
 
-vector <int> AccountManager::setFirsDayMonth(vector <int> vecToSetUp)
-{
-    vector <int> newVector = {};
-
-    for (size_t i = 0; i < 6; i++)
-    {
-        newVector.push_back(vecToSetUp[i]);
-    }
-    newVector.push_back(0);
-    newVector.push_back(1);
-
-    return newVector;
-}
-
-vector <int> AccountManager::setLastDayMonth(vector <int> vecToSetUp)
-{
-    string strFormatDate = ConvertMethods::convertVectorDateIntoStringFormat(vecToSetUp);
-    vector <int> newVector = {};
-    vector <int> temporary = {};
-
-    int year = ConvertMethods::getIntegerYearFromStringDateFormat(strFormatDate);
-    int month = ConvertMethods::getIntegerMonthFromStringDateFormat(strFormatDate);
-    int lastDayOfCurrentMonth = ValidationMethods::countMaxDayInMonth(year, month);
-
-
-    for (size_t i = 0; i < 6; i++)
-    {
-        newVector.push_back(vecToSetUp[i]);
-    }
-
-    temporary = ConvertMethods::insertSingleDigitsFromTheNumberToVector(lastDayOfCurrentMonth);
-    newVector.insert(newVector.end(), temporary.begin(), temporary.end());
-
-    return newVector;
-}
-
-vector <int> AccountManager::getLastMonthVector()
-{
-    vector <int> currentDate = ConvertMethods::getCurrentDate();
-    vector <int> vec = {};
-    int month = currentDate[4] * 10 + currentDate[5] - 1;
-    int year = currentDate[0] * 1000 + currentDate[1] * 100 + currentDate[2] * 10 + currentDate[3];
-
-    if (month == 1)
-    {
-        year -= 1;
-        month = 12;
-    }
-
-    vector <int> temp = ConvertMethods::insertSingleDigitsFromTheNumberToVector(year);
-    vec.insert(vec.end(), temp.begin(), temp.end());
-
-    if (month < 10)
-    {
-        vec.push_back(0);
-        vec.push_back(month);
-    }
-    else
-    {
-        temp = ConvertMethods::insertSingleDigitsFromTheNumberToVector(month);
-        vec.insert(vec.end(), temp.begin(), temp.end());
-    }
-    return vec;
-}
