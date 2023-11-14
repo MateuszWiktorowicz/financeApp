@@ -16,14 +16,19 @@ class UserManager
 
     User insertNewUser();
     bool isLoginExist(string log);
-
-
 public:
+    UserManager(string fileName) : fileWithUsers(fileName)
+    {
+        loggedInUserId = 0;
+        users = fileWithUsers.loadUsersFromFile();
+    };
+
     void registerUser();
     int loginUser();
     void changePassword();
     void logout();
     int getLoggedInUserId();
+    bool isUserLoggedIn();
 };
 
 

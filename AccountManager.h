@@ -13,7 +13,7 @@ using namespace std;
 
 class AccountManager
 {
-    int ID_LOGGED_IN_USER;
+    const int ID_LOGGED_IN_USER;
     vector <Operation> operations;
     FileWithIncomes fileWithIncomes;
     FileWithExpenses fileWithExpenses;
@@ -21,19 +21,21 @@ class AccountManager
     vector <int> setFirsDayCurrentMonth();
     vector <int> setLastDayCurrentMonth();
     bool isDateRangeCorrect(vector<Operation>::iterator itr, vector <int> date1, vector <int> date2);
+    void showBalanceAccountFromPeriod(vector <int> date1, vector <int> date2);
 public:
-    AccountManager(int idLoggedInUser, string nameOfFileIncomes, string nameOfFileExpenses)
-    : ID_LOGGED_IN_USER(idLoggedInUser), fileWithIncomes(nameOfFileIncomes), fileWithExpenses(nameOfFileExpenses)
+    AccountManager(int idLoggedInUser, string nameOfFileWithIncomes, string nameOfFileWithExpenses)
+    : ID_LOGGED_IN_USER(idLoggedInUser), fileWithIncomes(nameOfFileWithIncomes), fileWithExpenses(nameOfFileWithExpenses)
     {
-        operations = fileWithIncomes.loadIncomesFromFile();
-        vector <Operation> temp = fileWithExpenses.loadExpensesFromFile();
+        operations = fileWithIncomes.loadOperationsFromFile(ID_LOGGED_IN_USER);
+        vector <Operation> temp = fileWithExpenses.loadOperationsFromFile(ID_LOGGED_IN_USER);
         operations.insert(operations.end(), temp.begin(), temp.end());
     };
-    void showBalanceAccountFromPeriod(vector <int> date1, vector <int> date2);
     void addIncome();
     void addExpense();
     void showBalanceCurrentMonth();
     void showBalanceLastMonth();
+    void showBalanceFrom();
+
 
 
 };
