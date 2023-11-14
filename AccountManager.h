@@ -18,8 +18,9 @@ class AccountManager
     FileWithIncomes fileWithIncomes;
     FileWithExpenses fileWithExpenses;
 
-    vector <int> setFirsDayCurrentMonth();
-    vector <int> setLastDayCurrentMonth();
+    vector <int> getLastMonthVector();
+    vector <int> setFirsDayMonth(vector <int> vecToSetUp);
+    vector <int> setLastDayMonth(vector <int> vecToSetUp);
     Operation addAccountOperation(int operationId);
     bool isDateRangeCorrect(vector<Operation>::iterator itr, vector <int> date1, vector <int> date2);
     void showBalanceAccountFromPeriod(vector <int> date1, vector <int> date2);
