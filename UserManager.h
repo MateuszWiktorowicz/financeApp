@@ -19,6 +19,12 @@ class UserManager
 
 
 public:
+    UserManager(string fileName) : fileWithUsers(fileName)
+    {
+        loggedInUserId = 0;
+        users = fileWithUsers.loadUsersFromFile();
+    };
+
     void registerUser();
     int loginUser();
     void changePassword();
