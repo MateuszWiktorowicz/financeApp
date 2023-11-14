@@ -16,7 +16,6 @@ class XmlFile
 public:
     XmlFile(string fileName) : FILE_NAME(fileName) {};
     string getFileName();
-    bool isFileEmpty(fstream &textFile);
 };
 
 
