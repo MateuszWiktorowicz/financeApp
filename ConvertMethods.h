@@ -18,6 +18,9 @@ class ConvertMethods
     static string enterDate();
 
 public:
+    static vector <int> getLastMonthVector();
+    static vector <int> setFirsDayMonth(vector <int> vecToSetUp);
+    static vector <int> setLastDayMonth(vector <int> vecToSetUp);
     static vector <int> insertSingleDigitsFromTheNumberToVector(int num);
     static vector <int> convertStringDateFormatToIntVector(string strDateFormat);
     static string convertIntegerToString(int num);
@@ -31,9 +34,9 @@ public:
     static double convertStringToDouble(string str);
     static string convertDoubleToString(double num);
     static int convertCharToInt(char ch);
-    static int getIntegerYearFromStringDateFormat(string strDateFormat);
-    static int getIntegerMonthFromStringDateFormat(string strDateFormat);
-    static int getIntegerDayFromStringDateFormat(string strDateFormat);
+    static int getIntegerYearFromDateIntVector(vector <int> dateVector);
+    static int getIntegerMonthFromDateIntVector(vector <int> dateVector);
+    static int getIntegerDayFromDateIntVector(vector <int> dateVector);
 
 
 };

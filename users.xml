@@ -2,7 +2,7 @@
 <User>
 <id>1</id>
 <login>mat4usz</login>
-<password>123</password>
+<password>111</password>
 <name>Mateusz</name>
 <surname>Wiktorowicz</surname>
 </User>
@@ -12,5 +12,12 @@
 <password>111</password>
 <name>Amelia</name>
 <surname>Pekala</surname>
+</User>
+<User>
+<id>3</id>
+<login>woj</login>
+<password>paw</password>
+<name>Wojtek</name>
+<surname>Pawlik</surname>
 </User>
 </Users>
